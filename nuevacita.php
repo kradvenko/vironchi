@@ -10,7 +10,7 @@
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/bootstrap.js"></script>
 
-    <title>Vironchi - Veterinaria</title>
+    <title>Veterinaria Vironchi - Nueva Cita</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -43,7 +43,7 @@
 </body>
 <script>
     $(document).ready(function() {
-        $("#aIndex").addClass("currentPage");
+        $("#aCitas").addClass("currentPage");
     });
 </script>
 </html>
