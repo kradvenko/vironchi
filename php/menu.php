@@ -4,7 +4,7 @@
             $menu = '
             <div class="mainMenu">
                     <div class="dropdown">
-                        <a href="index.php" id="aIndex" class="mainMenuElement">Inicio</a>
+                        <a href="menu.php" id="aMenu" class="mainMenuElement">Inicio</a>
                     </div>
                     <div class="dropdown">
                         <a href="" id="aCitas" class="mainMenuElement">Citas</a>

@@ -7,6 +7,18 @@ body {
     to {background-color: #910027;}
 }
 
+@font-face {
+    font-family: 'Montserrat';
+    src: url("../fonts/Montserrat-Regular.ttf")
+    format('truetype');
+}
+
+@font-face {
+    font-family: 'Poiret One';
+    src: url("../fonts/PoiretOne-Regular.ttf")
+    format('truetype');
+}
+
 .divSlogan {
     text-align: center;
     background-color: #910027;
@@ -154,17 +166,17 @@ body {
 
 .labelType01 {
     font-size: 25px;
-    font-family: 'Poiret One', cursive;
+    font-family: 'Poiret One', serif;
 }
 
 .labelType02 {
     font-size: 20px;
-    font-family: 'Poiret One', cursive;
+    font-family: 'Poiret One', serif;
 }
 
 .labelType03 {
     font-size: 17px;
-    font-family: 'Poiret One', cursive;
+    font-family: 'Poiret One', serif;
 }
 
 .textbox-center {
@@ -184,8 +196,7 @@ body {
     min-width: 160px;
     transition: all 0.5s;
     color: #000000 !important;
-    /*font-family: 'Marck Script', cursive;*/
-    font-family: 'Poiret One', cursive;
+    font-family: 'Poiret One', serif;
     font-size: 22px;
     display: inline;
     padding-left: 15px;
@@ -203,8 +214,6 @@ body {
 
 .tag {
     border: 1px solid #a5d24a;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
     display: block;
     float: left;
     padding: 5px;
@@ -615,7 +624,7 @@ body {
 }
 
 .divPaisBienHeader {
-    font-family: 'Poiret One', cursive;
+    font-family: 'Poiret One', serif;
     border-top: 1px solid rgb(143, 143, 143);
     border-bottom: 1px solid rgb(143, 143, 143);
     margin-top: 5px;
@@ -697,7 +706,7 @@ body {
 }
 
 .navigation-bar {
-    font-family: 'Poiret One', cursive;
+    font-family: 'Poiret One', serif;
     border-top: 1px solid rgb(143, 143, 143);
     border-bottom: 1px solid rgb(143, 143, 143);
     font-size: 22px;
@@ -716,7 +725,7 @@ body {
 
 .gridNavigation span {
     color: #ffffff;
-    font-family: 'Poiret One', cursive;
+    font-family: 'Poiret One', serif;
     font-size: 19px;
     border: solid 0.5px;
     border-color: #ffffff;
@@ -732,4 +741,11 @@ body {
     border: solid 2px;
     background-color: #000000;
     color: #ffffff;
+}
+
+.divBackgroundOrange {    
+    color: #000000;    
+    font-size: 20px;
+    border-bottom: 3px solid #FFBF00;
+    margin-bottom: 20px;
 }

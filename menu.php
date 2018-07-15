@@ -6,7 +6,6 @@
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="css/veterinaria.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" />
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/veterinaria.js"></script>
@@ -30,6 +29,7 @@
                 ?>
             </div>
         </div>
+        
         <div class="row divBackgroundBlack">
             <div class="col-12 mainFooter">
                 <b>Veterinaria Vironchi</b> © Derechos Reservados 2018.
@@ -39,7 +39,8 @@
 </body>
 <script>
     $(document).ready(function() {
-        $("#aCitas").addClass("currentPage");
+        checkSession();
+        $("#aMenu").addClass("currentPage");
     });
 </script>
 </html>
