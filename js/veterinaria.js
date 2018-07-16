@@ -54,3 +54,24 @@ function checkSession() {
         document.location = "index.php";
     }
 }
+
+function obtenerFechaHoraActual(tipo) {
+    var currentdate = new Date();
+    switch (tipo) {
+        case 'FULL': return (currentdate.getDate() < 10 ? "0" + currentdate.getDate() : currentdate.getDate()) + "/"
+                + ((currentdate.getMonth() + 1) < 10 ? ("0" + (currentdate.getMonth() + 1)) : (currentdate.getMonth() + 1)) + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + (currentdate.getHours() < 10 ? ("0" + currentdate.getHours()) : currentdate.getHours()) + ":"  
+                + (currentdate.getMinutes() < 10 ? ("0" + currentdate.getMinutes()) : currentdate.getMinutes()) + ":"  
+                + (currentdate.getSeconds() < 10 ? ("0" + currentdate.getSeconds()) : currentdate.getSeconds());
+                break;
+        case 'DAY': return (currentdate.getDate() < 10 ? "0" + currentdate.getDate() : currentdate.getDate());
+                break;
+        case 'MONTH': return (currentdate.getMonth() + 1) < 10 ? ("0" + (currentdate.getMonth() + 1)) : (currentdate.getMonth() + 1);
+                break;
+        case 'YEAR': return currentdate.getFullYear();
+                break;
+
+    }
+    
+}
