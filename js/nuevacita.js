@@ -23,3 +23,13 @@ function limpiarCamposNuevaCita() {
     $("#selMes").val(obtenerFechaHoraActual("MONTH"));
     $("#tbAño").val(obtenerFechaHoraActual("YEAR"));
 }
+
+function limpiarCamposNuevoCliente() {
+    $("#tbNombreCliente").val("");
+    $("#tbDireccionCliente").val("");
+    $("#tbColoniaCliente").val("");
+    $("#tbMunicipioCliente").val("");
+    $("#tbTelefono1").val("");
+    $("#tbTelefono2").val("");
+    $("#tbCorreo").val("");
+}

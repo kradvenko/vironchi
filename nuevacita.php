@@ -381,12 +381,78 @@
             </div>
         </div>
     </div>
+    <!--Ventana modal para agregar un nuevo cliente-->
+    <div class="modal fade" id="modalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="modalAgregarCliente" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Agregar nuevo cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">                        
+                        <div class="col-12">
+                            Nombre
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbNombreCliente" maxlength="300"></input>
+                        </div>
+                        <div class="col-12">
+                            Dirección
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbDireccionCliente" maxlength="100"></input>
+                        </div>
+                        <div class="col-12">
+                            Colonia
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbColoniaCliente" maxlength="45"></input>
+                        </div>
+                        <div class="col-12">
+                            Municipio
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbMunicipioCliente" maxlength="45"></input>
+                        </div>
+                        <div class="col-12">
+                            Teléfono 1
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbTelefono1" maxlength="45"></input>
+                        </div>
+                        <div class="col-12">
+                            Teléfono 2
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbTelefono2" maxlength="45"></input>
+                        </div>
+                        <div class="col-12">
+                            Correo electrónico
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbCorreo" maxlength="45"></input>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposNuevoCliente()">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarNuevoCliente()">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
     $(document).ready(function() {
         checkSession();
         limpiarCamposNuevaCita();
         $("#aCitas").addClass("currentPage");
+    });
+    $('#modalAgregarCliente').on('shown.bs.modal', function() {
+        $('#tbNombreCliente').focus();
     });
 </script>
 </html>
