@@ -5,10 +5,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.min.css" />
     <link rel="stylesheet" type="text/css" href="css/veterinaria.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" />
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
     <script src="js/veterinaria.js"></script>
     <script src="js/nuevacita.js"></script>
 
@@ -187,7 +190,13 @@
                 Anticipo
             </div>
             <div class="col-2">
-                <input type="text" class="form-control" id="tbTotal"></input>
+                <input type="text" class="form-control" id="tbAnticipo"></input>
+            </div>
+            <div class="col-2">
+                Restan
+            </div>
+            <div class="col-2">
+                <label id="lblRestan">$</label>
             </div>
         </div>
         <div class="row divMargin divCenter" id="divDatosCitaEstetica" style="display: none;">
@@ -212,6 +221,12 @@
                     <option value="NORMAL">Normal</option>
                     <option value="MEDICADO">Medicado</option>
                 </select>
+            </div>
+            <div class="col-12">
+                Notas
+            </div>
+            <div class="col-12">
+                <textarea id="taNotasEsteticas" class="form-control" maxlength="500"></textarea>
             </div>
         </div>
         <div class="row divMargin divCenter" id="divDatosCitaMedica" style="display: none;">
@@ -374,6 +389,39 @@
             <div class="col-7 divMargin">
                 <input type="text" id="tbMucosas" class="form-control"></input>
             </div>
+            <div class="col-12">
+                Lista de problemas (temporal)
+            </div>
+            <div class="col-12">
+                <textarea id="taListaProblemas" class="form-control" maxlength="500"></textarea>
+            </div>
+            <div class="col-12">
+                Planes diagnosticos
+            </div>
+            <div class="col-12">
+                <textarea id="taPlanesDiagnosticos" class="form-control" maxlength="500"></textarea>
+            </div>
+            <div class="col-12">
+                Planes terapeuticos
+            </div>
+            <div class="col-12">
+                <textarea id="taPlanesTerapeuticos" class="form-control" maxlength="500"></textarea>
+            </div>
+            <div class="col-12">
+                Instrucciones clientes
+            </div>
+            <div class="col-12">
+                <textarea id="tbInstruccionesCliente" class="form-control" maxlength="500"></textarea>
+            </div>
+            <div class="col-12">
+                Notas
+            </div>
+            <div class="col-12">
+                <textarea id="taNotasMedicas" class="form-control" maxlength="500"></textarea>
+            </div>
+        </div>
+        <div class="row divMargin">
+            
         </div>
         <div class="row divBackgroundBlack">
             <div class="col-12 mainFooter">
@@ -415,7 +463,7 @@
                             Municipio
                         </div>
                         <div class="col-12">
-                            <input type="text" class="form-control" id="tbMunicipioCliente" maxlength="45"></input>
+                            <input type="text" class="form-control" id="tbMunicipioCliente" maxlength="45" value="TEPIC"></input>
                         </div>
                         <div class="col-12">
                             Teléfono 1
@@ -450,6 +498,13 @@
         checkSession();
         limpiarCamposNuevaCita();
         $("#aCitas").addClass("currentPage");
+        $("#tbCliente").autocomplete({
+            source: "php/obtenerClientesJSON.php",
+            minLength: 2,
+            select: function(event, ui) {
+                elegirCliente(ui.item.id);
+            }
+        });
     });
     $('#modalAgregarCliente').on('shown.bs.modal', function() {
         $('#tbNombreCliente').focus();
