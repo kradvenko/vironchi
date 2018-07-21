@@ -97,12 +97,10 @@
                 </button>
             </div>
         </div>
-        <div class="row divMargin divBackgroundOrange divCenter">
-            <div class="col-12">
+        <div class="row divMargin divCenter" id="divDatosCita" style="display: none;">
+            <div class="col-12 divMargin divBackgroundOrange divCenter">
                 Datos de la cita
             </div>
-        </div>
-        <div class="row divMargin divCenter" id="divDatosCita">
             <div class="col-2">
                 Fecha de la cita
             </div>
@@ -179,18 +177,18 @@
                 
             </div>
         </div>
-        <div class="row divMargin divCenter">
+        <div class="row divMargin divCenter" id="divDatosCitaTotales" style="display: none;">
             <div class="col-2">
                 Total
             </div>
             <div class="col-2">
-                <input type="text" class="form-control" id="tbTotal"></input>
+                <input type="text" class="form-control" id="tbTotal" onchange="verificarTotales()"></input>
             </div>
             <div class="col-2">
                 Anticipo
             </div>
             <div class="col-2">
-                <input type="text" class="form-control" id="tbAnticipo"></input>
+                <input type="text" class="form-control" id="tbAnticipo" onchange="verificarTotales()"></input>
             </div>
             <div class="col-2">
                 Restan

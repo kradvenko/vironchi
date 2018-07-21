@@ -1,14 +1,22 @@
+//Variables para el módulo de nueva cita
 var nc_IdClienteElegido = 0;
+var nc_Restan = 0;
 //Funciones para el módulo de nueva cita
 function mostrarInfoCita() {
     var tipoCita = $("#selTipoCita").val();
     if (tipoCita == "ESTETICA") {
+        $("#divDatosCita").show();
+        $("#divDatosCitaTotales").show();
         $("#divDatosCitaEstetica").show();
         $("#divDatosCitaMedica").hide();
     } else if (tipoCita == "MEDICA") {
+        $("#divDatosCita").show();
+        $("#divDatosCitaTotales").show();
         $("#divDatosCitaEstetica").hide();
         $("#divDatosCitaMedica").show();
     } else {
+        $("#divDatosCita").hide();
+        $("#divDatosCitaTotales").hide();
         $("#divDatosCitaEstetica").hide();
         $("#divDatosCitaMedica").hide();
     }
@@ -57,8 +65,11 @@ function limpiarCamposNuevaCita() {
     $("#taPlanesDiagnosticos").val("");
     $("#taPlanesTerapeuticos").val("");
     $("#tbInstruccionesCliente").val("");
+    $("#divDatosCita").hide();
+    $("#divDatosCitaTotales").hide();
     $("#divDatosCitaEstetica").hide();
     $("#divDatosCitaMedica").hide();
+    $("#lblRestan").text("$ 0");
 }
 
 function limpiarCamposNuevoCliente() {
@@ -98,4 +109,31 @@ function agregarNuevoCliente() {
 
 function elegirCliente(id) {
     nc_IdClienteElegido = id;
+    obtenerMascotasCliente();
+}
+
+function obtenerMascotasCliente() {
+    
+}
+
+function verificarTotales() {
+    var total = $("#tbTotal").val();
+    var anticipo = $("#tbAnticipo").val();
+    if (isNaN(total)) {
+        alert("No ha escrito un número válido para el total.");
+        $("#tbTotal").val("0");
+        return;
+    }
+    if (isNaN(anticipo)) {
+        alert("No ha escrito un número válido para el anticipo.");
+        $("#tbAnticipo").val("0");
+        return;
+    }
+    if (total < anticipo) {
+        alert("El anticipo es mayor que el total de la cita.");
+        $("#tbAnticipo").val("0");
+        return;
+    }
+    nc_Restan = total - anticipo;
+    $("#lblRestan").text(nc_Restan);
 }
