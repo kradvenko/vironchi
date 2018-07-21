@@ -12,8 +12,6 @@
     <script src="js/veterinaria.js"></script>
 
     <title>Vironchi - Veterinaria</title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
 </head>
 <body>
     <div class="container">

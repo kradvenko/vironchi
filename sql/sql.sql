@@ -104,5 +104,33 @@ CREATE TABLE `vir_citas` (
   `fechacaptura` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idcita`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--20/07/2018
+CREATE TABLE `mascotas` (
+  `idmascota` int(11) NOT NULL AUTO_INCREMENT,
+  `idcliente` int(11) DEFAULT NULL,
+  `idespecie` int(11) DEFAULT NULL,
+  `idraza` int(11) DEFAULT NULL,
+  `idtienda` int(11) DEFAULT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
+  `fechanacimiento` varchar(45) DEFAULT NULL,
+  `edad` varchar(45) DEFAULT NULL,
+  `fechacaptura` varchar(45) DEFAULT NULL,
+  `caracteristicas` varchar(400) DEFAULT NULL,
+  `estado` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idmascota`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+CREATE TABLE `especies` (
+  `idespecie` int(11) NOT NULL AUTO_INCREMENT,
+  `especie` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`idespecie`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `razas` (
+  `idraza` int(11) NOT NULL AUTO_INCREMENT,
+  `idespecie` int(11) DEFAULT NULL,
+  `raza` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  PRIMARY KEY (`idraza`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 

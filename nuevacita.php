@@ -16,8 +16,6 @@
     <script src="js/nuevacita.js"></script>
 
     <title>Veterinaria Vironchi - Nueva Cita</title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
 </head>
 <body>
     <div class="container mainContainer">
@@ -481,6 +479,33 @@
                         <div class="col-12">
                             <input type="text" class="form-control" id="tbCorreo" maxlength="45"></input>
                         </div>                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposNuevoCliente()">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarNuevoCliente()">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Ventana modal para agregar una nueva mascota-->
+    <div class="modal fade" id="modalAgregarMascota" tabindex="-1" role="dialog" aria-labelledby="modalAgregarMascota" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Agregar nueva mascota</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">                        
+                        <div class="col-12">
+                            Nombre
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbNombreCliente" maxlength="300"></input>
+                        </div> 
                     </div>
                 </div>
                 <div class="modal-footer">
