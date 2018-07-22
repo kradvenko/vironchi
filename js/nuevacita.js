@@ -137,3 +137,19 @@ function verificarTotales() {
     nc_Restan = total - anticipo;
     $("#lblRestan").text(nc_Restan);
 }
+
+function agregarNuevaMascota() {
+
+}
+
+function limpiarCamposNuevaMascota() {
+
+}
+
+function agregarNuevaEspecie() {
+    
+}
+
+function limpiarCamposNuevaEspecie() {
+    $("#tbNuevaEspecie").val("");
+}
