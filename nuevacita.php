@@ -16,6 +16,7 @@
     <script src="js/nuevacita.js"></script>
 
     <title>Veterinaria Vironchi - Nueva Cita</title>
+
 </head>
 <body>
     <div class="container mainContainer">
@@ -59,18 +60,6 @@
         </div>
         <div class="row divMargin divCenter">
             <div class="col-2">
-                Tipo de cita
-            </div>
-            <div class="col-3   ">
-                <select id="selTipoCita" class="form-control" onchange="mostrarInfoCita()">
-                    <option value="NO" selected>Elija un tipo de cita</option>
-                    <option value="ESTETICA">Estética</option>
-                    <option value="MEDICA">Médica</option>
-                </select>
-            </div>
-        </div>
-        <div class="row divMargin divCenter">
-            <div class="col-2">
                 Cliente
             </div>
             <div class="col-8">
@@ -90,9 +79,21 @@
 
             </div>
             <div class="col-2">
-                <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarMascota'>
+                <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarMascota' onclick="cargarDatosNuevaMascota()">
                     <i class="fas fa-plus"></i>
                 </button>
+            </div>
+        </div>
+        <div class="row divMargin divCenter">
+            <div class="col-2">
+                Tipo de cita
+            </div>
+            <div class="col-3   ">
+                <select id="selTipoCita" class="form-control" onchange="mostrarInfoCita()">
+                    <option value="NO" selected>Elija un tipo de cita</option>
+                    <option value="ESTETICA">Estética</option>
+                    <option value="MEDICA">Médica</option>
+                </select>
             </div>
         </div>
         <div class="row divMargin divCenter" id="divDatosCita" style="display: none;">
@@ -195,6 +196,7 @@
                 <label id="lblRestan">$</label>
             </div>
         </div>
+        <!--Cita estética-->
         <div class="row divMargin divCenter" id="divDatosCitaEstetica" style="display: none;">
             <div class="col-12 divBackgroundOrange">
                 Cita Estética
@@ -225,6 +227,7 @@
                 <textarea id="taNotasEsteticas" class="form-control" maxlength="500"></textarea>
             </div>
         </div>
+        <!--Cita médica-->
         <div class="row divMargin divCenter" id="divDatosCitaMedica" style="display: none;">
             <div class="col-12 divBackgroundOrange">
                 Cita Médica
@@ -510,7 +513,7 @@
                             Especie
                         </div>
                         <div class="col-11" id="divEspecies">
-                            
+                            No existen especies para esta especie, por favor agregue una.
                         </div>
                         <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarEspecie'>
                             <i class="fas fa-plus"></i>
@@ -519,9 +522,9 @@
                             Raza
                         </div>
                         <div class="col-11" id="divRazas">
-                            
+                            No existen razas para esta especie, por favor agregue una.
                         </div>
-                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarRaza'>
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarRaza' onclick="cargarEspecieRaza()">
                             <i class="fas fa-plus"></i>
                         </button>
                         <div class="col-12">
@@ -665,8 +668,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposNuevaEspecie()">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="agregarNuevaEspecie()">Guardar cambios</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposNuevaRaza()">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarNuevaRaza()">Guardar cambios</button>
                 </div>
             </div>
         </div>
@@ -687,6 +690,15 @@
     });
     $('#modalAgregarCliente').on('shown.bs.modal', function() {
         $('#tbNombreCliente').focus();
+    });
+    $('#modalAgregarMascota').on('shown.bs.modal', function() {
+        $('#tbNombreMascota').focus();
+    });
+    $('#modalAgregarEspecie').on('shown.bs.modal', function() {
+        $('#tbNuevaEspecie').focus();
+    });
+    $('#modalAgregarRaza').on('shown.bs.modal', function() {
+        $('#tbNuevaRaza').focus();
     });
 </script>
 </html>

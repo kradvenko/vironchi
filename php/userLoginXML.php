@@ -13,7 +13,7 @@
 
         $con = new mysqli($hn, $un, $pw, $db);
 
-        $sql = "Select usuarios.*, tiendas.nombre As tienda, tiendas.tipo As tipotienda
+        $sql = "Select usuarios.*, tiendas.nombre As tienda, tiendas.tipo As tipotienda, tiendas.prefijo As prefijo
                 From usuarios 
                 Inner Join tiendas
                 On tiendas.idtienda = usuarios.idtienda

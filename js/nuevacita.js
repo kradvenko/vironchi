@@ -37,6 +37,7 @@ function limpiarCamposNuevaCita() {
     $("#selBaño").val("NO");
     $("#tbPeso").val("");
     $("#tbTemperatura").val("");
+    $("#taNotasEsteticas").val("");
     $("#selAparienciaGeneral").val("NORMAL");
     $("#tbAparienciaGeneral").val("");
     $("#selPiel").val("NORMAL");
@@ -69,6 +70,7 @@ function limpiarCamposNuevaCita() {
     $("#divDatosCitaTotales").hide();
     $("#divDatosCitaEstetica").hide();
     $("#divDatosCitaMedica").hide();
+    $("#taNotasMedicas").val("");
     $("#lblRestan").text("$ 0");
 }
 
@@ -112,10 +114,6 @@ function elegirCliente(id) {
     obtenerMascotasCliente();
 }
 
-function obtenerMascotasCliente() {
-    
-}
-
 function verificarTotales() {
     var total = $("#tbTotal").val();
     var anticipo = $("#tbAnticipo").val();
@@ -138,18 +136,198 @@ function verificarTotales() {
     $("#lblRestan").text(nc_Restan);
 }
 
-function agregarNuevaMascota() {
+function obtenerMascotasCliente() {
+    var idCliente = nc_IdClienteElegido;
+    if (idCliente == 0) {
+        return;
+    }
+    $.ajax({url: "php/obtenerMascotasSelect.php", async: false, type: "POST", data: { idCliente: idCliente, idSelect: "selMascotas" }, success: function(res) {
+        $("#divMascotasCliente").html(res);
+    }});
+}
 
+function agregarNuevaMascota() {
+    var idCliente = nc_IdClienteElegido;
+    var nombre = $("#tbNombreMascota").val();
+    if (nombre.length == 0) {
+        alert("No ha escrito el nombre de la mascota.")
+        return;
+    }
+    var idEspecie = $("#selEspecies").val();
+    var idRaza = $("#selRazas").val();
+    var fechaNacimiento = $("#selDiaMascota").val() + "/" + $("#selMesMascota").val() + "/" + $("#tbAñoMascota").val();
+    var edad = $("#tbEdadMascota").val();
+    var caracteristicas = $("#taCaracteristicasMascota").val();
+    var fechaCaptura = obtenerFechaHoraActual('FULL');
+    var estado = "ACTIVO";
+
+    $.ajax({url: "php/agregarMascota.php", async: false, type: "POST", data: { idCliente: idCliente, idEspecie: idEspecie, idRaza: idRaza, nombre: nombre, fechaNacimiento: fechaNacimiento,
+     edad: edad, caracteristicas: caracteristicas, fechaCaptura: fechaCaptura, estado: estado }, success: function(res) {
+        if (res == "OK") {
+            alert("Se ha ingresado la especie.");
+            $('#modalAgregarMascota').modal('hide');
+            limpiarCamposNuevaMascota();
+            obtenerMascotasCliente();
+        } else {
+            alert(res);
+        }
+    }});
 }
 
 function limpiarCamposNuevaMascota() {
-
+    $("#tbNombreMascota").val("");
+    $("#selDiaMascota").val("01")
+    $("#selMesMascota").val("01")
+    $("#tbAñoMascota").val("")
+    $("#tbEdadMascota").val("");
+    $("#taCaracteristicasMascota").val("");
 }
 
 function agregarNuevaEspecie() {
-    
+    var especie = $("#tbNuevaEspecie").val();
+    if (especie.length == 0) {
+        alert("No ha escrito un nombre de especie.")
+        return;
+    }
+    $.ajax({url: "php/agregarEspecie.php", async: false, type: "POST", data: { especie: especie }, success: function(res) {
+        if (res == "OK") {
+            alert("Se ha ingresado la especie.");
+            $('#modalAgregarEspecie').modal('hide');
+            $("#tbNuevaEspecie").val("");
+            obtenerEspeciesSelect();
+        } else {
+            alert(res);
+        }
+    }});
+}
+
+function cargarDatosNuevaMascota() {
+    obtenerEspeciesSelect();
+    obtenerRazasSelect();
+}
+
+function obtenerEspeciesSelect() {
+    $.ajax({url: "php/obtenerEspeciesSelect.php", async: false, type: "POST", data: { idSelect: "selEspecies" }, success: function(res) {
+        $("#divEspecies").html(res);
+    }});
+}
+
+function cargarEspecieRaza() {
+    if ($("#selEspecies").val() == null) {
+        $('#modalAgregarRaza').modal('hide');
+        return;
+    }
+    $.ajax({url: "php/obtenerEspeciesSelect.php", async: false, type: "POST", data: { idSelect: "selEspeciesRaza" }, success: function(res) {
+        $("#divNuevaRazaEspecie").html(res);
+        $("#selEspeciesRaza").val($("#selEspecies").val());
+    }});
+}
+
+function agregarNuevaRaza() {
+    var raza = $("#tbNuevaRaza").val();
+    if (raza.length == 0) {
+        alert("No ha escrito un nombre de raza.")
+        return;
+    }
+    var idEspecie = $("#selEspecies").val();
+    $.ajax({url: "php/agregarRaza.php", async: false, type: "POST", data: { idEspecie: idEspecie, raza: raza }, success: function(res) {
+        if (res == "OK") {
+            alert("Se ha ingresado la raza.");
+            $('#modalAgregarRaza').modal('hide');
+            $("#tbNuevaRaza").val("");
+            obtenerRazasSelect();
+        } else {
+            alert(res);
+        }
+    }});
+}
+
+function obtenerRazasSelect() {
+    var idEspecie = $("#selEspecies").val();
+    if ($("#selEspecies").val() == null) {
+        return;
+    }
+    $.ajax({url: "php/obtenerRazasSelect.php", async: false, type: "POST", data: { idEspecie: idEspecie, idSelect: "selRazas" }, success: function(res) {
+        $("#divRazas").html(res);
+    }});
 }
 
 function limpiarCamposNuevaEspecie() {
     $("#tbNuevaEspecie").val("");
+}
+
+function limpiarCamposNuevaRaza() {
+    $("#tbNuevaRaza").val("");
+}
+
+function agregarCita() {
+    if (nc_IdClienteElegido == 0) {
+        alert("No ha elegido un cliente para la cita.");
+        return;
+    }
+    var idCliente = nc_IdClienteElegido;
+    var idMascota = $("#selMascotas").val();
+    if (idMascota == null) {
+        alert("No ha elegido una mascota para la cita.");
+        return;
+    }
+    var tipoCita = $("#selTipoCita").val();
+    var diaCita = $("#selDia").val();
+    var mesCita = $("#selMes").val();
+    var añoCita = $("#tbAño").val();
+    var totalCita = $("#tbTotal").val();
+    var anticipoCita = $("#tbAnticipo").val();
+    var restanCita = nc_Restan;
+    var corte = $("#selCorte").val();
+    var baño = $("#selBaño").val();
+    var notasEstetica = $("#taNotasEsteticas").val();
+    var peso = $("#tbPeso").val();
+    var temperatura = $("#tbTemperatura").val();
+    var aparienciaGeneral = $("#selAparienciaGeneral").val();
+    var aparienciaGeneralNotas = $("#tbAparienciaGeneral").val();
+    var piel = $("#selPiel").val();
+    var pielNotas = $("#tbPiel").val();
+    var musculosqueleto = $("#selMusculosqueleto").val();
+    var musculosqueletoNotas = $("#tbMusculosqueleto").val();
+    var circulatorio = $("#selCirculatorio").val();
+    var circulatorioNotas = $("#tbCirculatorio").val();
+    var digestivo = $("#selDigestivo").val();
+    var digestivoNotas = $("#tbDigestivo").val();
+    var respiratorio = $("#selRespiratorio").val();
+    var respiratorioNotas = $("#tbRespiratorio").val();
+    var genitourinario = $("#selGenitourinario").val();
+    var genitourinarioNotas = $("#tbGenitourinario").val();
+    var ojos = $("#selOjos").val();
+    var ojosNotas = $("#tbOjos").val();
+    var oidos = $("#selOidos").val();
+    var oidosNotas = $("#tbOidos").val();
+    var sistemaNervioso = $("#selSistemaNervioso").val();
+    var sistemaNerviosoNotas = $("#tbSistemaNervioso").val();
+    var ganglios = $("#selGanglios").val();
+    var gangliosNotas = $("#tbGanglios").val();
+    var mucosas = $("#selMucosas").val();
+    var mucosasNotas = $("#tbMucosas").val();
+    var listaProblemas = $("#taListaProblemas").val();
+    var planesDiagnosticos = $("#taPlanesDiagnosticos").val();
+    var planesTerapeuticos = $("#taPlanesTerapeuticos").val();
+    var instruccionesCliente = $("#tbInstruccionesCliente").val();
+    var notasMedicas = $("#taNotasMedicas").val();
+    var estado = "ACTIVO";
+    var fechaCaptura = obtenerFechaHoraActual('FULL');
+
+    $.ajax({url: "php/agregarCita.php", async: false, type: "POST", data: { idCliente: idCliente, tipoCita: tipoCita, idMascota: idMascota, diaCita: diaCita,
+    mesCita: mesCita, anoCita: añoCita, totalCita: totalCita, anticipoCita: anticipoCita, restanCita: restanCita, corte: corte, bano: baño, notasEstetica: notasEstetica,
+    peso: peso, temperatura: temperatura, aparienciaGeneral: aparienciaGeneral, aparienciaGeneralNotas: aparienciaGeneralNotas, piel: piel, pielNotas: pielNotas,
+    musculosqueleto: musculosqueleto, musculosqueletoNotas: musculosqueletoNotas, circulatorio: circulatorio, circulatorioNotas: circulatorioNotas, digestivo: digestivo,
+    digestivoNotas: digestivoNotas, respiratorio: respiratorio, respiratorioNotas: respiratorioNotas, genitourinario: genitourinario, genitourinarioNotas: genitourinarioNotas,
+    ojos: ojos, ojosNotas: ojosNotas, oidos: oidos, oidosNotas: oidosNotas, sistemaNervioso: sistemaNervioso, sistemaNerviosoNotas: sistemaNerviosoNotas,
+    ganglios: ganglios, gangliosNotas: gangliosNotas, mucosas: mucosas, mucosasNotas: mucosasNotas, listaProblemas: listaProblemas, planesDiagnosticos: planesDiagnosticos,
+    planesTerapeuticos: planesTerapeuticos, instruccionesCliente: instruccionesCliente, notasMedicas: notasMedicas, estado: estado, fechaCaptura: fechaCaptura }, success: function(res) {
+        if (res == "OK") {
+            alert("Se ha agregado la cita.");
+            limpiarCamposNuevaCita();
+        } else {
+            alert(res);
+        }
+    }});
 }
