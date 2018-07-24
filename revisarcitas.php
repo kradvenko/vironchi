@@ -58,6 +58,7 @@
             </div>
             <div class="col-2">
                 <select id="selDia" class="form-control">
+                    <option value="%">Todos</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
                     <option value="03">03</option>
@@ -93,6 +94,7 @@
             </div>
             <div class="col-2">
                 <select id="selMes" class="form-control">
+                    <option value="%">Todos</option>
                     <option value="01">Enero</option>
                     <option value="02">Febrero</option>
                     <option value="03">Marzo</option>
@@ -120,11 +122,25 @@
                 
             </div>
             <div class="col-6">
-                <input type="button" class="btn-success form-control" value="Buscar" onclick="buscarCitas()" />
+                <input type="button" class="btn btn-success" value="Buscar" onclick="buscarCitas()" />
             </div>
             <div class="col-3">
                 
             </div>
+        </div>
+        <div class="row divMargin divCenter">
+            <div class="col-3">
+
+            </div>
+            <div class="col-6 divBackgroundOrange">
+                Citas
+            </div>
+            <div class="col-3">
+
+            </div>
+        </div>
+        <div class="row divMargin" id="divCitas">
+            
         </div>
         <div class="row divBackgroundBlack">
             <div class="col-12 mainFooter">

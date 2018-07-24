@@ -9,5 +9,15 @@ function limpiarCamposRevisarCita() {
 }
 
 function buscarCitas() {
+    var diaCita = $("#selDia").val();
+    var mesCita = $("#selMes").val();
+    var añoCita = $("#tbAño").val();
+
+    $.ajax({url: "php/obtenerCitas.php", async: false, type: "POST", data: { diaCita: diaCita, mesCita: mesCita, anoCita: añoCita }, success: function(res) {
+           $("#divCitas").html(res);
+       }});
+}
+
+function detallesCita(idcita) {
     
 }

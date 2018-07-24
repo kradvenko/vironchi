@@ -757,3 +757,10 @@ input {
     border-bottom: 3px solid #FFBF00;
     margin-bottom: 20px;
 }
+
+.divHeaderLista {    
+    color: #000000;
+    font-size: 18px;
+    border-bottom: 3px solid #82ad2b;
+    margin-bottom: 20px;
+}
