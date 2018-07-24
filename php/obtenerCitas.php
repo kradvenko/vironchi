@@ -52,7 +52,7 @@
             echo $row["diacita"] . "/" . $row["mescita"] . "/" . $row["anocita"];
             echo "</div>";
             echo "<div class='col-2'>";
-            echo "<input type='button' class='btn btn-success value='Detalles' onclick='detallesCita(" . $row["idcita"] . ")' />";
+            echo "<input type='button' class='btn btn-success' value='Detalles' onclick='detallesCita(" . $row["idcita"] . ", \"" . $row["tipo"] . "\")' />";
             echo "</div>";
         }
         

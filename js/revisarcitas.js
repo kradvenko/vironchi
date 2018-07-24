@@ -15,9 +15,23 @@ function buscarCitas() {
 
     $.ajax({url: "php/obtenerCitas.php", async: false, type: "POST", data: { diaCita: diaCita, mesCita: mesCita, anoCita: añoCita }, success: function(res) {
            $("#divCitas").html(res);
-       }});
+    }});
 }
 
-function detallesCita(idcita) {
-    
+function detallesCita(idcita, tipocita) {
+    if (tipocita == "MEDICA") {
+        $('#modalCitaMedica').modal('show');
+        obtenerDatosCita(idcita, tipocita);
+    } else if (tipocita == "ESTETICA") {
+        $('#modalCitaEstetica').modal('show');
+        obtenerDatosCita(idcita, tipocita);
+    }
+}
+
+function obtenerDatosCita(idcita, tipocita) {
+    $.ajax({url: "php/obtenerDatosCitaXML.php", async: false, type: "POST", data: { idCita: idcita, tipoCita: tipocita }, success: function(res) {
+        $('resultado', res).each(function(index, element) {
+            document.cookie = "v_idusuario=" + $(this).find("idusuario").text() + "; Path=/;";
+        });
+    }});
 }
