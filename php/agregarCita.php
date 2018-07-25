@@ -65,10 +65,10 @@
                 (idcliente, tipo, idmascota, diacita, mescita, anocita, total, anticipo, restan,
                 ce_corte, ce_bano, ce_notas,
                 cm_peso, cm_temperatura, 
-                cm_aparienciageneral, cm_aparicenciageneralnotas, cm_piel, cm_pielnotas, cm_muscoesqueleto, cm_muscoesqueletonotas, cm_circulatorio,
+                cm_aparienciageneral, cm_aparienciageneralnotas, cm_piel, cm_pielnotas, cm_muscoesqueleto, cm_muscoesqueletonotas, cm_circulatorio,
                 cm_circulatorionotas, cm_digestivo, cm_digestivonotas, cm_respiratorio, cm_respiratorionotas, cm_genitourinario, cm_genitourinarionotas,
                 cm_ojos, cm_ojosnotas, cm_oidos, cm_oidosnotas, cm_sistemanervioso, cm_sistemanerviosonotas, cm_ganglios, cm_gangliosnotas,
-                cm_mucosas, cm_mucosasnotas, cm_listaproblemas, cm_planesdiagnosticos, cm_planesterapeuticos, cm_instruccionesclientes,
+                cm_mucosas, cm_mucosasnotas, cm_listaproblemas, cm_planesdiagnosticos, cm_planesterapeuticos, cm_instruccionescliente,
                 cm_notas, estado, fechacaptura)
                 VALUES
                 ($idCliente, '$tipoCita', $idMascota, '$diaCita', '$mesCita', '$anoCita', '$total', '$anticipo', '$restan',

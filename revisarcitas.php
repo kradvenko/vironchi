@@ -118,11 +118,62 @@
             <div class="col-12 divMargin">
 
             </div>
+        </div>
+        <div class="row divMargin divCenter">
+            <div class="col-12">
+                Tipo de cita
+            </div>
+            <div class="col-4">
+
+            </div>
+            <div class="col-4">
+                <select id="selTipoCita" class="form-control">
+                    <option value="%" selected>Todas</option>
+                    <option value="ESTETICA">Estética</option>
+                    <option value="MEDICA">Médica</option>
+                </select>
+            </div>
+            <div class="col-4">
+
+            </div>
+        </div>
+        <div class="row divMargin divCenter">
             <div class="col-3">
                 
             </div>
             <div class="col-6">
-                <input type="button" class="btn btn-success" value="Buscar" onclick="buscarCitas()" />
+                <input type="button" class="btn btn-success" value="Buscar por fecha" onclick="buscarCitas('Fecha')" />
+            </div>
+            <div class="col-3">
+                
+            </div>
+        </div>
+        <div class="row divMargin divCenter">
+            <div class="col-3">
+                
+            </div>
+            <div class="col-6">
+                Nombre del cliente o mascota
+            </div>
+            <div class="col-3">
+                
+            </div>
+            <div class="col-3">
+                
+            </div>
+            <div class="col-6">
+                <input type="text" class="form-control" id="tbNombreBusqueda" />
+            </div>
+            <div class="col-3">
+                
+            </div>
+        </div>
+        <div class="row divMargin divCenter">
+            <div class="col-3">
+                
+            </div>
+            <div class="col-6">
+                <input type="button" class="btn btn-success" value="Buscar por nombre" onclick="buscarCitas('Nombre')" />
             </div>
             <div class="col-3">
                 
@@ -148,7 +199,7 @@
             </div>
         </div>
     </div>
-     <!--Ventana modal para agregar ver los detalles de una cita médica-->
+     <!--Ventana modal para ver los detalles de una cita médica-->
      <div class="modal fade" id="modalCitaMedica" tabindex="-1" role="dialog" aria-labelledby="modalCitaMedica" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -162,6 +213,26 @@
                     <div class="row divMargin divCenter">
                         <div class="col-12 divBackgroundOrange">
                             Cita Médica
+                        </div>
+                        <div class="row divMargin divCenter">
+                            <div class="col-2">
+                                Total
+                            </div>
+                            <div class="col-2">
+                                <input type="text" class="form-control" id="tbTotal" onchange="verificarTotales()"></input>
+                            </div>
+                            <div class="col-2">
+                                Anticipo
+                            </div>
+                            <div class="col-2">
+                                <input type="text" class="form-control" id="tbAnticipo" onchange="verificarTotales()"></input>
+                            </div>
+                            <div class="col-2">
+                                Restan
+                            </div>
+                            <div class="col-2">
+                                <label id="lblRestan">$</label>
+                            </div>
                         </div>
                         <div class="col-2 divMargin">
                             Peso
@@ -352,8 +423,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposNuevaEspecie()">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="agregarNuevaEspecie()">Guardar cambios</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposCitaMedica()">Cerrar</button>
+                    <!--<button type="button" class="btn btn-primary" onclick="agregarNuevaEspecie()">Guardar cambios</button>-->
                 </div>
             </div>
         </div>
