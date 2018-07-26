@@ -764,3 +764,11 @@ input {
     border-bottom: 3px solid #82ad2b;
     margin-bottom: 20px;
 }
+
+.divNombre {
+    cursor: pointer;
+}
+
+.divNombre:hover {
+    border-bottom: 2px solid #910027;
+}

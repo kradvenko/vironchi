@@ -49,10 +49,10 @@
             echo "</div>";
 
             while ($row = $result->fetch_array()) {
-                echo "<div class='col-3'>";
+                echo "<div class='col-3 divNombre' onclick='cargarDatosCliente(" . $row["idcliente"] . ")'>";
                 echo $row["cliente"];
                 echo "</div>";
-                echo "<div class='col-2'>";
+                echo "<div class='col-2 divNombre' onclick='cargarDatosMascota(" . $row["idmascota"] . ")'>";
                 echo $row["mascota"];
                 echo "</div>";
                 echo "<div class='col-2'>";
@@ -65,7 +65,7 @@
                 echo "<input type='button' class='btn btn-info' value='Detalles' onclick='detallesCita(" . $row["idcita"] . ", \"" . $row["tipo"] . "\")' />";
                 echo "</div>";
                 echo "<div class='col-1'>";
-                echo "<input type='button' class='btn btn-success' value='Finalizar' onclick='detallesCita(" . $row["idcita"] . ", \"" . $row["tipo"] . "\")' />";
+                echo "<input type='button' class='btn btn-success' value='Finalizar' onclick='finalizarCita(" . $row["idcita"] . ")' />";
                 echo "</div>";
                 echo "<div class='col-12 divMargin'>";
                 echo "</div>";
@@ -112,10 +112,10 @@
             echo "</div>";
 
             while ($row = $result->fetch_array()) {
-                echo "<div class='col-3'>";
+                echo "<div class='col-3 divNombre' onclick='cargarDatosCliente(" . $row["idcliente"] . ")'>";
                 echo $row["cliente"];
                 echo "</div>";
-                echo "<div class='col-2'>";
+                echo "<div class='col-2 divNombre' onclick='cargarDatosMascota(" . $row["idmascota"] . ")'>";
                 echo $row["mascota"];
                 echo "</div>";
                 echo "<div class='col-2'>";
