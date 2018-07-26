@@ -562,7 +562,7 @@
         </div>
     </div>
     <!--Ventana modal para ver la información de la mascota-->
-    <div class="modal fade" id="modalMascota" tabindex="-1" role="dialog" aria-labelledby="modalAgregarMamodalMascotascota" aria-hidden="true">
+    <div class="modal fade" id="modalMascota" tabindex="-1" role="dialog" aria-labelledby="modalMascota" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -684,11 +684,86 @@
             </div>
         </div>
     </div>
+    <!--Ventana modal para ver la información de los pagos-->
+    <div class="modal fade" id="modalPagos" tabindex="-1" role="dialog" aria-labelledby="modalPagos" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Información de los pagos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row divMargin divCenter">
+                        <div class="col-2">
+                            Total
+                        </div>
+                        <div class="col-2">
+                            <label id="lblTotalPagos">$</label>
+                        </div>
+                        <div class="col-2">
+                            Anticipo
+                        </div>
+                        <div class="col-2">
+                            <label id="lblAnticiposPagos">$</label>
+                        </div>
+                        <div class="col-2">
+                            Restan
+                        </div>
+                        <div class="col-2">
+                            <label id="lblRestanPagos">$</label>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="btn btn-success" value="Nuevo pago" onclick="nuevoPago()" />
+                        </div>
+                    </div>
+                    <div class="row divMargin" id="divListaPagos">
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposPagos()">Cerrar</button>
+                    <!--<button type="button" class="btn btn-primary" onclick="agregarNuevaMascota()">Guardar cambios</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Ventana modal para agregar un nuevo pago-->
+    <div class="modal fade" id="modalNuevoPago" tabindex="-1" role="dialog" aria-labelledby="modalNuevoPago" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Nuevo pago</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row divMargin divCenter">
+                            <div class="col-4">
+                                Cantidad
+                            </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="tbCantidadPago" />
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposNuevoPago()">Cerrar</button>
+                        <button type="button" class="btn btn-primary" onclick="agregarNuevoPago()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 <script>
     $(document).ready(function() {
         $("#aCitas").addClass("currentPage");
         limpiarCamposRevisarCita();
+    });
+    $('#modalNuevoPago').on('shown.bs.modal', function() {
+        $('#tbCantidadPago').focus();
     });
 </script>
 </html>

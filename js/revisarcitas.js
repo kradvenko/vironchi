@@ -1,5 +1,6 @@
 //Variables para el módulo para revisar citas
-
+var rc_IdCitaElegida = 0;
+var rc_CitaResta = 0;
 
 //Funciones para el módulo para revisar citas
 function limpiarCamposRevisarCita() {
@@ -178,6 +179,21 @@ function cargarDatosMascota(idMascota) {
     }});
 }
 
+function verPagos(idCita) {
+    rc_IdCitaElegida = idCita;
+    $('#modalPagos').modal('show');
+    $.ajax({url: "php/obtenerDatosCitaXML.php", async: false, type: "POST", data: { idCita: idCita, tipoCita: "%" }, success: function(res) {
+        $('resultado', res).each(function(index, element) {
+            $("#lblTotalPagos").text("$ " + $(this).find("total").text());
+            $("#lblAnticiposPagos").text("$ " + $(this).find("anticipo").text());
+            $("#lblRestanPagos").text("$ " + $(this).find("restan").text());
+            rc_CitaResta = $(this).find("restan").text();
+        });
+    }});
+    $.ajax({url: "php/obtenerPagos.php", async: false, type: "POST", data: { idCita: idCita }, success: function(res) {
+        $("#divListaPagos").html(res);
+    }});
+}
 function obtenerEspeciesSelect() {
     $.ajax({url: "php/obtenerEspeciesSelect.php", async: false, type: "POST", data: { idSelect: "selEspecies" }, success: function(res) {
         $("#divEspecies").html(res);
@@ -196,4 +212,61 @@ function obtenerRazasSelect() {
 
 function limpiarCamposMascota() {
 
+}
+
+function limpiarCamposPagos() {
+    rc_IdCitaElegida = 0;
+    rc_CitaResta = 0;
+    $("#divListaPagos").html("");
+    $("#lblTotalPagos").text("$ " + $(this).find("total").text());
+    $("#lblAnticiposPagos").text("$ ");
+    $("#lblRestanPagos").text("$ ");
+}
+
+function limpiarCamposNuevoPago() {
+    $("#tbCantidadPago").val("");
+}
+
+function nuevoPago() {
+    $('#modalNuevoPago').modal('show');
+}
+
+function agregarNuevoPago() {
+    var cantidad = $("#tbCantidadPago").val();
+    if (isNaN(cantidad)) {
+        alert("No ha escrito una cantidad válida.");
+        return;
+    }
+    if (cantidad > rc_CitaResta) {
+        alert("La cantidad a pagar es mayor que lo que resta por pagar.");
+        return;
+    }
+    if (cantidad == 0) {
+        alert("La cantidad a pagar es 0.");
+        return;
+    }
+    if (rc_CitaResta == 0) {
+        alert("No es posible realizar pagos a esta cita. No hay adeudo.");
+        return;
+    }
+    var fechaPago = obtenerFechaHoraActual('FULL');
+    $.ajax({url: "php/agregarPago.php", async: false, type: "POST", data: { idCita: rc_IdCitaElegida, cantidad: cantidad, fechaPago: fechaPago }, success: function(res) {
+        if (res == "OK") {
+            $('#modalNuevoPago').modal('hide');
+            $.ajax({url: "php/obtenerDatosCitaXML.php", async: false, type: "POST", data: { idCita: rc_IdCitaElegida, tipoCita: "%" }, success: function(res) {
+                $('resultado', res).each(function(index, element) {
+                    $("#lblTotalPagos").text("$ " + $(this).find("total").text());
+                    $("#lblAnticiposPagos").text("$ " + $(this).find("anticipo").text());
+                    $("#lblRestanPagos").text("$ " + $(this).find("restan").text());
+                    rc_CitaResta = $(this).find("restan").text();
+                });
+            }});
+            $.ajax({url: "php/obtenerPagos.php", async: false, type: "POST", data: { idCita: rc_IdCitaElegida }, success: function(res) {
+                $("#divListaPagos").html(res);
+            }});
+            alert("Se ha agregado el pago.");
+        } else {
+            alert(res);
+        }
+    }});
 }
