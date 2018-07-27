@@ -148,14 +148,18 @@
         </div>
         <div class="row divMargin divCenter">
             <div class="col-12 divBackgroundOrange">
-                Opciones
+                Opciones de búsqueda
             </div>
+            <div class="col-4">
+                <input type="checkbox" id="cbFinalizados" />
+                <label for="cbFinalizados">Incluir finalizadas</label>
             </div>
+        </div>
         <div class="row divMargin divCenter">
             <div class="col-12 divBackgroundOrange">
                 Citas
             </div>
-            </div>
+        </div>
         <div class="row divMargin" id="divCitas">
             
         </div>
@@ -697,40 +701,40 @@
     </div>
     <!--Ventana modal para agregar un nuevo pago-->
     <div class="modal fade" id="modalNuevoPago" tabindex="-1" role="dialog" aria-labelledby="modalNuevoPago" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Nuevo pago</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row divMargin divCenter">
-                            <div class="col-4">
-                                Cantidad
-                            </div>
-                            <div class="col-4">
-                                <input type="text" class="form-control" id="tbCantidadPago" />
-                            </div>
-                            <div class="col-4">
-                                
-                            </div>
-                            <div class="col-12">
-                                Notas
-                            </div>
-                            <div class="col-12">
-                                <textarea class="form-control" maxlength="200" id="taNotasPago"></textarea>
-                            </div>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nuevo pago</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row divMargin divCenter">
+                        <div class="col-4">
+                            Cantidad
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control" id="tbCantidadPago" />
+                        </div>
+                        <div class="col-4">
+                            
+                        </div>
+                        <div class="col-12">
+                            Notas
+                        </div>
+                        <div class="col-12">
+                            <textarea class="form-control" maxlength="200" id="taNotasPago"></textarea>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposNuevoPago()">Cerrar</button>
-                        <button type="button" class="btn btn-primary" onclick="agregarNuevoPago()">Guardar</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposNuevoPago()">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarNuevoPago()">Guardar</button>
                 </div>
             </div>
         </div>
+    </div>
     <!--Ventana modal para verificar si se va a finalizar una cita-->
     <div class="modal fade" id="modalFinalizarCita" tabindex="-1" role="dialog" aria-labelledby="modalFinalizarCita" aria-hidden="true">
         <div class="modal-dialog" role="document">

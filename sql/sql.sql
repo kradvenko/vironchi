@@ -143,5 +143,7 @@ CREATE TABLE `vir_pagos` (
   `estado` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idpago`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+--27/07/2018
+ALTER TABLE `vironchi`.`vir_citas` 
+ADD COLUMN `fechafinalizado` VARCHAR(45) NULL AFTER `fechacaptura`;
 

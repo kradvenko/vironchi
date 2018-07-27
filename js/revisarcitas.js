@@ -1,7 +1,7 @@
 //Variables para el módulo para revisar citas
 var rc_IdCitaElegida = 0;
 var rc_CitaResta = 0;
-
+var rc_TipoBusqueda;
 //Funciones para el módulo para revisar citas
 function limpiarCamposRevisarCita() {
     $("#selDia").val(obtenerFechaHoraActual("DAY"));
@@ -11,13 +11,19 @@ function limpiarCamposRevisarCita() {
 }
 
 function buscarCitas(tipo) {
+    rc_TipoBusqueda = tipo;
+    var incluirFinalizadas = "NO";
+        
+    if ($("#cbFinalizados").prop("checked") == true) {
+        incluirFinalizadas = "SI";
+    }
     if (tipo == 'Fecha') {
         var diaCita = $("#selDia").val();
         var mesCita = $("#selMes").val();
         var añoCita = $("#tbAño").val();
         var tipoCita = $("#selTipoCita").val();
 
-        $.ajax({url: "php/obtenerCitas.php", async: false, type: "POST", data: { diaCita: diaCita, mesCita: mesCita, anoCita: añoCita, tipoCita: tipoCita, tipoBusqueda: tipo }, success: function(res) {
+        $.ajax({url: "php/obtenerCitas.php", async: false, type: "POST", data: { diaCita: diaCita, mesCita: mesCita, anoCita: añoCita, tipoCita: tipoCita, tipoBusqueda: tipo, incluirFinalizadas: incluirFinalizadas }, success: function(res) {
             $("#divCitas").html(res);
         }});
     } else if (tipo == "Nombre") {
@@ -25,7 +31,7 @@ function buscarCitas(tipo) {
         if (nombre.length == 0) {
             return;
         }
-        $.ajax({url: "php/obtenerCitas.php", async: false, type: "POST", data: { nombre: nombre, tipoBusqueda: tipo }, success: function(res) {
+        $.ajax({url: "php/obtenerCitas.php", async: false, type: "POST", data: { nombre: nombre, tipoBusqueda: tipo, incluirFinalizadas: incluirFinalizadas }, success: function(res) {
             $("#divCitas").html(res);
         }});
     }
@@ -143,6 +149,21 @@ function limpiarCamposCitaMedica() {
 }
 
 function finalizarCita(idCita) {
+    rc_IdCitaElegida = idCita;
+    $('#modalFinalizarCita').modal('show');
+}
+
+function finCita() {
+    var fechaFinalizado = obtenerFechaHoraActual('FULL');
+    $.ajax({url: "php/finalizarCita.php", async: false, type: "POST", data: { idCita: rc_IdCitaElegida, fechaFinalizado: fechaFinalizado }, success: function(res) {
+        if (res == "OK") {
+            alert("Se ha finalizado la cita.");
+            buscarCitas(rc_TipoBusqueda);
+            $('#modalFinalizarCita').modal('hide');
+        } else {
+            alert("No se ha podido finalizar la cita: " + res);
+        }
+    }});
     
 }
 

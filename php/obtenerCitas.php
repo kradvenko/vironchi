@@ -10,6 +10,7 @@
             $mesCita = $_POST["mesCita"];
             $anoCita = $_POST["anoCita"];
             $tipoCita = $_POST["tipoCita"];
+            $incluirFinalizadas = $_POST["incluirFinalizadas"];
 
             $prefijo = $_COOKIE["v_prefijo"];
             $tabla = $prefijo . "citas";
@@ -23,6 +24,10 @@
                     Inner Join mascotas
                     On mascotas.idmascota = $tabla.idmascota
                     Where diacita Like '$diaCita' And mescita Like '$mesCita' And anocita Like '$anoCita' And $tabla.tipo Like '$tipoCita' And $tabla.estado = 'ACTIVO'";
+
+            if ($incluirFinalizadas == "SI") {
+                $sql = $sql . " Or $tabla.estado = 'FINALIZADO'";
+            }
 
             $result = $con->query($sql);
 
@@ -65,7 +70,9 @@
                 echo "<input type='button' class='btn btn-info' value='Pagos' onclick='verPagos(" . $row["idcita"] . ")' />";
                 echo "</div>";
                 echo "<div class='col-1'>";
-                echo "<input type='button' class='btn btn-success' value='Finalizar' onclick='finalizarCita(" . $row["idcita"] . ")' />";
+                if ($row["estado"] == "ACTIVO") {
+                    echo "<input type='button' class='btn btn-success' value='Finalizar' onclick='finalizarCita(" . $row["idcita"] . ")' />";
+                }
                 echo "</div>";
                 echo "<div class='col-12 divMargin'>";
                 echo "</div>";
@@ -128,7 +135,9 @@
                 echo "<input type='button' class='btn btn-info' value='Detalles' onclick='detallesCita(" . $row["idcita"] . ", \"" . $row["tipo"] . "\")' />";
                 echo "</div>";
                 echo "<div class='col-1'>";
-                echo "<input type='button' class='btn btn-success' value='Finalizar' onclick='detallesCita(" . $row["idcita"] . ", \"" . $row["tipo"] . "\")' />";
+                if ($row["estado"] == "ACTIVO") {
+                    echo "<input type='button' class='btn btn-success' value='Finalizar' onclick='finalizarCita(" . $row["idcita"] . ")' />";
+                }
                 echo "</div>";
                 echo "<div class='col-12 divMargin'>";
                 echo "</div>";
