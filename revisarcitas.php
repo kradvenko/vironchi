@@ -35,8 +35,11 @@
             </div>
         </div>
         <div class="row divMargin divCenter">
-            <div class="col-12">
+            <div class="col-6">
                 Fecha de las citas
+            </div>
+            <div class="col-3">
+                Tipo de cita
             </div>
             <div class="col-3">
                 
@@ -113,52 +116,24 @@
                 <input type="text" id="tbAño" class="form-control"></input>
             </div>
             <div class="col-3">
-                
-            </div>
-            <div class="col-12 divMargin">
-
-            </div>
-        </div>
-        <div class="row divMargin divCenter">
-            <div class="col-12">
-                Tipo de cita
-            </div>
-            <div class="col-4">
-
-            </div>
-            <div class="col-4">
                 <select id="selTipoCita" class="form-control">
                     <option value="%" selected>Todas</option>
                     <option value="ESTETICA">Estética</option>
                     <option value="MEDICA">Médica</option>
                 </select>
             </div>
-            <div class="col-4">
+            <div class="col-3">
+                <input type="button" class="btn btn-success" value="Buscar por fecha" onclick="buscarCitas('Fecha')" />
+            </div>
+            <div class="col-12 divMargin">
 
             </div>
         </div>
         <div class="row divMargin divCenter">
-            <div class="col-3">
-                
-            </div>
-            <div class="col-6">
-                <input type="button" class="btn btn-success" value="Buscar por fecha" onclick="buscarCitas('Fecha')" />
-            </div>
-            <div class="col-3">
-                
-            </div>
-        </div>
-        <div class="row divMargin divCenter">
-            <div class="col-3">
-                
-            </div>
             <div class="col-6">
                 Nombre del cliente o mascota
             </div>
-            <div class="col-3">
-                
-            </div>
-            <div class="col-3">
+            <div class="col-6">
                 
             </div>
             <div class="col-6">
@@ -167,16 +142,8 @@
             <div class="col-3">
                 
             </div>
-        </div>
-        <div class="row divMargin divCenter">
             <div class="col-3">
-                
-            </div>
-            <div class="col-6">
                 <input type="button" class="btn btn-success" value="Buscar por nombre" onclick="buscarCitas('Nombre')" />
-            </div>
-            <div class="col-3">
-                
             </div>
         </div>
         <div class="row divMargin divCenter">
@@ -747,7 +714,16 @@
                             <div class="col-4">
                                 <input type="text" class="form-control" id="tbCantidadPago" />
                             </div>
-                        </div>                        
+                            <div class="col-4">
+                                
+                            </div>
+                            <div class="col-12">
+                                Notas
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control" maxlength="200" id="taNotasPago"></textarea>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposNuevoPago()">Cerrar</button>

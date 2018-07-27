@@ -225,6 +225,7 @@ function limpiarCamposPagos() {
 
 function limpiarCamposNuevoPago() {
     $("#tbCantidadPago").val("");
+    $("#taNotasPago").val("");
 }
 
 function nuevoPago() {
@@ -237,7 +238,8 @@ function agregarNuevoPago() {
         alert("No ha escrito una cantidad válida.");
         return;
     }
-    if (cantidad > rc_CitaResta) {
+    
+    if (parseFloat(cantidad) > parseFloat(rc_CitaResta)) {
         alert("La cantidad a pagar es mayor que lo que resta por pagar.");
         return;
     }
@@ -250,8 +252,10 @@ function agregarNuevoPago() {
         return;
     }
     var fechaPago = obtenerFechaHoraActual('FULL');
-    $.ajax({url: "php/agregarPago.php", async: false, type: "POST", data: { idCita: rc_IdCitaElegida, cantidad: cantidad, fechaPago: fechaPago }, success: function(res) {
+    var notas = $("#taNotasPago").val();
+    $.ajax({url: "php/agregarPago.php", async: false, type: "POST", data: { idCita: rc_IdCitaElegida, cantidad: cantidad, fechaPago: fechaPago, notas: notas }, success: function(res) {
         if (res == "OK") {
+            limpiarCamposNuevoPago();
             $('#modalNuevoPago').modal('hide');
             $.ajax({url: "php/obtenerDatosCitaXML.php", async: false, type: "POST", data: { idCita: rc_IdCitaElegida, tipoCita: "%" }, success: function(res) {
                 $('resultado', res).each(function(index, element) {
