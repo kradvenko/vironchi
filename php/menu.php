@@ -2,6 +2,17 @@
     
     function menu() {
             $menu = '
+            <div class="row divMargin">
+                    <div class="col-6">
+                        
+                    </div>
+                    <div class="col-4">
+                        Usuario actual :  ' . $_COOKIE["v_nombre"] . ' 
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-primary btn-danger" onclick="cerrarSesion()">Cerrar sesión</button> 
+                    </div>
+                </div>
             <div class="mainMenu">
                     <div class="dropdown">
                         <a href="menu.php" id="aMenu" class="mainMenuElement">Inicio</a>
@@ -13,9 +24,9 @@
                             <a href="revisarcitas.php" id="aRevisarCitas">Revisar citas</a>
                         </div>
                     </div>
-                    <div class="dropdown">
+                    <!--<div class="dropdown">
                         <a href="contacto.php" id="aContacto" class="mainMenuElement">Contacto</a>                        
-                    </div>
+                    </div>-->
             </div>
             ';
         return $menu;

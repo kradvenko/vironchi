@@ -55,6 +55,19 @@ function checkSession() {
     }
 }
 
+function cerrarSesion() {
+    document.cookie = "v_idusuario=; Path=/; Expires= Thu, 01 Jan 1970 00:00:01 GMT;";
+    document.cookie = "v_usuario=; Path=/; Expires= Thu, 01 Jan 1970 00:00:01 GMT;";
+    document.cookie = "v_tipo=; Path=/; Expires= Thu, 01 Jan 1970 00:00:01 GMT;";
+    document.cookie = "v_nombre=; Path=/; Expires= Thu, 01 Jan 1970 00:00:01 GMT;";
+    document.cookie = "v_idtienda=; Path=/; Expires= Thu, 01 Jan 1970 00:00:01 GMT;";
+    document.cookie = "v_tienda=; Path=/; Expires= Thu, 01 Jan 1970 00:00:01 GMT;";
+    document.cookie = "v_prefijo=; Path=/; Expires= Thu, 01 Jan 1970 00:00:01 GMT;";
+    document.cookie = "v_tipotienda=; Path=/; Expires= Thu, 01 Jan 1970 00:00:01 GMT;";
+    document.location = "index.php";
+}
+
+
 function obtenerFechaHoraActual(tipo) {
     var currentdate = new Date();
     switch (tipo) {
