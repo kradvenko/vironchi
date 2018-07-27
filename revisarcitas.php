@@ -147,16 +147,15 @@
             </div>
         </div>
         <div class="row divMargin divCenter">
-            <div class="col-3">
-
+            <div class="col-12 divBackgroundOrange">
+                Opciones
             </div>
-            <div class="col-6 divBackgroundOrange">
+            </div>
+        <div class="row divMargin divCenter">
+            <div class="col-12 divBackgroundOrange">
                 Citas
             </div>
-            <div class="col-3">
-
             </div>
-        </div>
         <div class="row divMargin" id="divCitas">
             
         </div>
@@ -732,6 +731,30 @@
                 </div>
             </div>
         </div>
+    <!--Ventana modal para verificar si se va a finalizar una cita-->
+    <div class="modal fade" id="modalFinalizarCita" tabindex="-1" role="dialog" aria-labelledby="modalFinalizarCita" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Finalizar cita</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row divMargin divCenter">
+                        <div class="col-12">
+                            ¿Desea finalizar la cita?
+                        </div>                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="finCita()">Finalizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
     $(document).ready(function() {
