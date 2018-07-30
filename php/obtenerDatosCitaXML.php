@@ -19,7 +19,7 @@
 
         $sql = "Select *
                 From $tabla
-                Where idcita = $idCita And tipo Like '$tipoCita' And estado = 'ACTIVO'";
+                Where idcita = $idCita And tipo Like '$tipoCita'";
 
         $result = $con->query($sql);
 
