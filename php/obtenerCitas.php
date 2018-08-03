@@ -11,6 +11,7 @@
             $anoCita = $_POST["anoCita"];
             $tipoCita = $_POST["tipoCita"];
             $incluirFinalizadas = $_POST["incluirFinalizadas"];
+            $noPagadas = $_POST["noPagadas"];
 
             $prefijo = $_COOKIE["v_prefijo"];
             $tabla = $prefijo . "citas";
@@ -27,6 +28,9 @@
 
             if ($incluirFinalizadas == "SI") {
                 $sql = $sql . " Or $tabla.estado = 'FINALIZADO'";
+            }
+            if ($noPagadas == "SI") {
+                $sql = $sql . " And $tabla.restan > 0";
             }
 
             $result = $con->query($sql);
@@ -80,6 +84,8 @@
             mysqli_close($con);
         } else if ($tipoBusqueda == 'Nombre') {
             $nombre = $_POST["nombre"];
+            $incluirFinalizadas = $_POST["incluirFinalizadas"];
+            $noPagadas = $_POST["noPagadas"];
 
             $prefijo = $_COOKIE["v_prefijo"];
             $tabla = $prefijo . "citas";
@@ -93,6 +99,13 @@
                     Inner Join mascotas
                     On mascotas.idmascota = $tabla.idmascota
                     Where (clientes.nombre Like '%$nombre%' Or mascotas.nombre Like '%$nombre%') And $tabla.estado = 'ACTIVO'";
+
+            if ($incluirFinalizadas == "SI") {
+                $sql = $sql . " Or $tabla.estado = 'FINALIZADO'";
+            }
+            if ($noPagadas == "SI") {
+                $sql = $sql . " And $tabla.restan > 0";
+            }
 
             $result = $con->query($sql);
 

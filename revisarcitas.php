@@ -6,6 +6,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="css/veterinaria.css" />
+    <link rel="stylesheet" type="text/css" href="css/slider.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" />
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -151,8 +152,20 @@
                 Opciones de búsqueda
             </div>
             <div class="col-4">
-                <input type="checkbox" id="cbFinalizados" />
-                <label for="cbFinalizados">Incluir finalizadas</label>
+                <label class="switch">
+                    <input id="cbFinalizados" type="checkbox" />
+                    <span class="slider round">
+                        Incluir finalizadas
+                    </span>
+                </label>
+            </div>
+            <div class="col-4">
+                <label class="switch">
+                    <input id="cbNoPagadas" type="checkbox" />
+                    <span class="slider round">
+                        Solo no pagadas
+                    </span>
+                </label>
             </div>
         </div>
         <div class="row divMargin divCenter">

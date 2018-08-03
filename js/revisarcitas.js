@@ -8,14 +8,20 @@ function limpiarCamposRevisarCita() {
     $("#selMes").val(obtenerFechaHoraActual("MONTH"));
     $("#tbAño").val(obtenerFechaHoraActual("YEAR"));
     $("#tbNombreBusqueda").val("");
+    $("#cbFinalizados").prop("checked", false);
+    $("#cbNoPagadas").prop("checked", false);
 }
 
 function buscarCitas(tipo) {
     rc_TipoBusqueda = tipo;
     var incluirFinalizadas = "NO";
+    var noPagadas = "NO";
         
     if ($("#cbFinalizados").prop("checked") == true) {
         incluirFinalizadas = "SI";
+    }
+    if ($("#cbNoPagadas").prop("checked") == true) {
+        noPagadas = "SI";
     }
     if (tipo == 'Fecha') {
         var diaCita = $("#selDia").val();
@@ -23,7 +29,7 @@ function buscarCitas(tipo) {
         var añoCita = $("#tbAño").val();
         var tipoCita = $("#selTipoCita").val();
 
-        $.ajax({url: "php/obtenerCitas.php", async: false, type: "POST", data: { diaCita: diaCita, mesCita: mesCita, anoCita: añoCita, tipoCita: tipoCita, tipoBusqueda: tipo, incluirFinalizadas: incluirFinalizadas }, success: function(res) {
+        $.ajax({url: "php/obtenerCitas.php", async: false, type: "POST", data: { diaCita: diaCita, mesCita: mesCita, anoCita: añoCita, tipoCita: tipoCita, tipoBusqueda: tipo, incluirFinalizadas: incluirFinalizadas, noPagadas: noPagadas }, success: function(res) {
             $("#divCitas").html(res);
         }});
     } else if (tipo == "Nombre") {
@@ -31,7 +37,7 @@ function buscarCitas(tipo) {
         if (nombre.length == 0) {
             return;
         }
-        $.ajax({url: "php/obtenerCitas.php", async: false, type: "POST", data: { nombre: nombre, tipoBusqueda: tipo, incluirFinalizadas: incluirFinalizadas }, success: function(res) {
+        $.ajax({url: "php/obtenerCitas.php", async: false, type: "POST", data: { nombre: nombre, tipoBusqueda: tipo, incluirFinalizadas: incluirFinalizadas, noPagadas: noPagadas }, success: function(res) {
             $("#divCitas").html(res);
         }});
     }
