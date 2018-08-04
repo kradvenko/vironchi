@@ -24,6 +24,9 @@
                             <a href="revisarcitas.php" id="aRevisarCitas">Revisar citas</a>
                         </div>
                     </div>
+                    <div class="dropdown">
+                        <a href="articulos.php" id="aArticulos" class="mainMenuElement">Artículos</a>
+                    </div>
                     <!--<div class="dropdown">
                         <a href="contacto.php" id="aContacto" class="mainMenuElement">Contacto</a>                        
                     </div>-->

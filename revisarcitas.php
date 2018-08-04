@@ -481,7 +481,7 @@
             </div>
         </div>
     </div>
-    <!--Ventana modal para ver la información del nuevo cliente-->
+    <!--Ventana modal para ver la información del cliente-->
     <div class="modal fade" id="modalCliente" tabindex="-1" role="dialog" aria-labelledby="modalCliente" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -538,7 +538,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposNuevoCliente()">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="">Cerrar</button>
                     <!--<button type="button" class="btn btn-primary" onclick="agregarNuevoCliente()">Guardar cambios</button>-->
                 </div>
             </div>
@@ -568,18 +568,12 @@
                         <div class="col-11" id="divEspecies">
                             No existen especies para esta especie, por favor agregue una.
                         </div>
-                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarEspecie'>
-                            <i class="fas fa-plus"></i>
-                        </button>
                         <div class="col-12">
                             Raza
                         </div>
                         <div class="col-11" id="divRazas">
                             No existen razas para esta especie, por favor agregue una.
                         </div>
-                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarRaza' onclick="cargarEspecieRaza()">
-                            <i class="fas fa-plus"></i>
-                        </button>
                         <div class="col-12">
                             Fecha de nacimiento
                         </div>

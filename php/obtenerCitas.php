@@ -24,10 +24,12 @@
                     On clientes.idcliente = $tabla.idcliente
                     Inner Join mascotas
                     On mascotas.idmascota = $tabla.idmascota
-                    Where diacita Like '$diaCita' And mescita Like '$mesCita' And anocita Like '$anoCita' And $tabla.tipo Like '$tipoCita' And $tabla.estado = 'ACTIVO'";
+                    Where diacita Like '$diaCita' And mescita Like '$mesCita' And anocita Like '$anoCita' And $tabla.tipo Like '$tipoCita' And ($tabla.estado = 'ACTIVO'";
 
             if ($incluirFinalizadas == "SI") {
-                $sql = $sql . " Or $tabla.estado = 'FINALIZADO'";
+                $sql = $sql . " Or $tabla.estado = 'FINALIZADO')";
+            } else {
+                $sql = $sql . ")";
             }
             if ($noPagadas == "SI") {
                 $sql = $sql . " And $tabla.restan > 0";
@@ -98,10 +100,12 @@
                     On clientes.idcliente = $tabla.idcliente
                     Inner Join mascotas
                     On mascotas.idmascota = $tabla.idmascota
-                    Where (clientes.nombre Like '%$nombre%' Or mascotas.nombre Like '%$nombre%') And $tabla.estado = 'ACTIVO'";
+                    Where (clientes.nombre Like '%$nombre%' Or mascotas.nombre Like '%$nombre%') And ($tabla.estado = 'ACTIVO'";
 
             if ($incluirFinalizadas == "SI") {
-                $sql = $sql . " Or $tabla.estado = 'FINALIZADO'";
+                $sql = $sql . " Or $tabla.estado = 'FINALIZADO')";
+            } else {
+                $sql = $sql . ")";
             }
             if ($noPagadas == "SI") {
                 $sql = $sql . " And $tabla.restan > 0";
