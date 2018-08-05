@@ -144,11 +144,11 @@ CREATE TABLE `vir_pagos` (
   PRIMARY KEY (`idpago`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 --27/07/2018
-ALTER TABLE `vironchi`.`vir_citas` 
+ALTER TABLE `vir_citas` 
 ADD COLUMN `fechafinalizado` VARCHAR(45) NULL AFTER `fechacaptura`;
 
 --04/08/2018
-ALTER TABLE `vironchi`.`vir_citas` 
+ALTER TABLE `vir_citas` 
 ADD COLUMN `idusuariocaptura` INT NULL AFTER `fechafinalizado`;
 
 CREATE TABLE `categorias` (
@@ -159,4 +159,21 @@ CREATE TABLE `categorias` (
   `estado` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idcategoria`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--05/08/2018
+CREATE TABLE `vir_articulos` (
+  `idarticulo` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) DEFAULT NULL,
+  `idcategoria` int(11) DEFAULT NULL,
+  `clave` varchar(45) DEFAULT NULL,
+  `descripcion` varchar(200) DEFAULT NULL,
+  `cantidad` int(11) DEFAULT NULL,
+  `preciopublico` float DEFAULT NULL,
+  `cantidadminima` int(11) DEFAULT NULL,
+  `preciocompra` float DEFAULT NULL,
+  `estado` varchar(45) DEFAULT NULL,
+  `idusuariocaptura` int(11) DEFAULT NULL,
+  `fechacaptura` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idarticulo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

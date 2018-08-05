@@ -61,7 +61,7 @@
             <div class="col-3" id="divCategorias">
                 
             </div>
-            <div class="col-9">
+            <div class="col-9" id="divArticulosInventario">
                 
             </div>
         </div>
@@ -147,7 +147,7 @@
                             Nombre
                         </div>
                         <div class="col-12 divMargin">
-                            <input type="text" class="form-control" id="tbNuevoArtículoNombre"></input>
+                            <input type="text" class="form-control" id="tbNuevoArticuloNombre"></input>
                         </div>
                         <div class="col-12 divMargin">
                             Categoría
@@ -159,9 +159,38 @@
                             Clave
                         </div>
                         <div class="col-12 divMargin">
-                            <input type="text" class="form-control" id="tbNuevoArtículoClave"></input>
+                            <input type="text" class="form-control" id="tbNuevoArticuloClave"></input>
                         </div>
-
+                        <div class="col-12 divMargin">
+                            Descripción
+                        </div>
+                        <div class="col-12 divMargin">
+                            <input type="text" class="form-control" id="tbNuevoArticuloDescripcion"></input>
+                        </div>
+                        <div class="col-3 divMargin">
+                            Cantidad
+                        </div>
+                        <div class="col-3 divMargin">
+                            <input type="text" class="form-control" id="tbNuevoArticuloCantidad" value="0"></input>
+                        </div>
+                        <div class="col-3 divMargin">
+                            Precio Público
+                        </div>
+                        <div class="col-3 divMargin">
+                            <input type="text" class="form-control" id="tbNuevoArticuloPrecioPublico" value="0"></input>
+                        </div>
+                        <div class="col-3 divMargin">
+                            Cantidad Mínima
+                        </div>
+                        <div class="col-3 divMargin">
+                            <input type="text" class="form-control" id="tbNuevoArticuloCantidadMinima" value="0"></input>
+                        </div>
+                        <div class="col-3 divMargin">
+                            Precio Compra
+                        </div>
+                        <div class="col-3 divMargin">
+                            <input type="text" class="form-control" id="tbNuevoArtículoPrecioCompra" value="0"></input>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -176,6 +205,7 @@
     $(document).ready(function() {
         checkSession();
         obtenerCategoriasSelect();
+        obtenerArticulosInventario();
         $("#aArticulos").addClass("currentPage");
     });
     $('#modalAgregarCategoria').on('shown.bs.modal', function() {

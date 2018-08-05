@@ -27,6 +27,7 @@ function limpiarCamposNuevaCategoria() {
 function obtenerCategoriasSelect() {
     $.ajax({url: "php/obtenerCategoriasSelect.php", async: false, type: "POST", data: { idSelect: 'selCategorias', estado: 'ACTIVO' }, success: function(res) {
         $("#divCategorias").html(res);
+        $("#selCategorias").change(obtenerArticulosInventario);
     }});
 }
 
@@ -60,5 +61,45 @@ function obtenerCategoriasNuevoArticulo() {
 }
 
 function limpiarCamposNuevoArticulo() {
-    
+    $("#divCategoriasNuevoArticulo").val("");
+    $("#tbNuevoArticuloClave").val("");
+    $("#tbNuevoArticuloDescripcion").val("");
+    $("#tbNuevoArticuloCantidad").val("0");
+    $("#tbNuevoArticuloPrecioPublico").val("0");
+    $("#tbNuevoArticuloCantidadMinima").val("0");
+    $("#tbNuevoArtículoPrecioCompra").val("0");
+}
+
+function agregarNuevoArticulo() {
+    var nombre = $("#tbNuevoArticuloNombre").val();
+    var idCategoria = $("#selCategoriasNuevoArticulo").val();
+    var clave = $("#tbNuevoArticuloClave").val();
+    var descripcion = $("#tbNuevoArticuloDescripcion").val();
+    var cantidad = $("#tbNuevoArticuloCantidad").val();
+    var precioPublico = $("#tbNuevoArticuloPrecioPublico").val();
+    var cantidadMinima = $("#tbNuevoArticuloCantidadMinima").val();
+    var precioCompra = $("#tbNuevoArtículoPrecioCompra").val();
+    if (nombre.length == 0) {
+        alert("No ha ingresado el nombre del artículo.");
+        return;
+    }
+    var fechaCaptura = obtenerFechaHoraActual('FULL');
+    $.ajax({url: "php/agregarArticulo.php", async: false, type: "POST", data: { nombre: nombre, idCategoria: idCategoria, clave: clave, descripcion: descripcion,
+        cantidad: cantidad, precioPublico: precioPublico, cantidadMinima: cantidadMinima, precioCompra: precioCompra, fechaCaptura: fechaCaptura }, success: function(res) {
+        if (res == "OK") {
+            alert("Se ha ingresado el artículo.");
+            $('#modalAgregarArticulo').modal('hide');
+            limpiarCamposNuevoArticulo();
+            obtenerArticulosInventario();
+        } else {
+            alert(res);
+        }
+    }});
+}
+
+function obtenerArticulosInventario() {
+    var idCategoria = $("#selCategorias").val();
+    $.ajax({url: "php/obtenerArticulosInventario.php", async: false, type: "POST", data: { idCategoria: idCategoria, estado: '%' }, success: function(res) {
+        $("#divArticulosInventario").html(res);
+    }});
 }
