@@ -51,6 +51,7 @@
 
         $idTienda = $_COOKIE["v_idtienda"];
         $prefijo = $_COOKIE["v_prefijo"];
+        $idUsuario = $_COOKIE["v_idusuario"];
 
         if (!$idCliente) {
             echo "Error. Faltan variables.";
@@ -69,7 +70,7 @@
                 cm_circulatorionotas, cm_digestivo, cm_digestivonotas, cm_respiratorio, cm_respiratorionotas, cm_genitourinario, cm_genitourinarionotas,
                 cm_ojos, cm_ojosnotas, cm_oidos, cm_oidosnotas, cm_sistemanervioso, cm_sistemanerviosonotas, cm_ganglios, cm_gangliosnotas,
                 cm_mucosas, cm_mucosasnotas, cm_listaproblemas, cm_planesdiagnosticos, cm_planesterapeuticos, cm_instruccionescliente,
-                cm_notas, estado, fechacaptura, fechafinalizado)
+                cm_notas, estado, fechacaptura, fechafinalizado, idusuariocaptura)
                 VALUES
                 ($idCliente, '$tipoCita', $idMascota, '$diaCita', '$mesCita', '$anoCita', '$total', '$anticipo', '$restan',
                 '$corte', '$bano', '$notasEstetica',
@@ -78,7 +79,7 @@
                 '$circulatorioNotas', '$digestivo', '$digestivoNotas', '$respiratorio', '$respiratorioNotas', '$genitourinario', '$genitourinarioNotas',
                 '$ojos', '$ojosNotas', '$oidos', '$oidosNotas', '$sistemaNervioso', '$sistemaNerviosoNotas', '$ganglios', '$gangliosNotas',
                 '$mucosas', '$mucosasNotas', '$listaProblemas', '$planesDiagnosticos', '$planesTerapeuticos', '$instruccionesCliente',
-                '$notasMedicas', '$estado', '$fechaCaptura', '')";
+                '$notasMedicas', '$estado', '$fechaCaptura', '', $idUsuario)";
 
         $con->query($sql);
 

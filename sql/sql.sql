@@ -147,3 +147,16 @@ CREATE TABLE `vir_pagos` (
 ALTER TABLE `vironchi`.`vir_citas` 
 ADD COLUMN `fechafinalizado` VARCHAR(45) NULL AFTER `fechacaptura`;
 
+--04/08/2018
+ALTER TABLE `vironchi`.`vir_citas` 
+ADD COLUMN `idusuariocaptura` INT NULL AFTER `fechafinalizado`;
+
+CREATE TABLE `categorias` (
+  `idcategoria` int(11) NOT NULL AUTO_INCREMENT,
+  `categoria` varchar(45) DEFAULT NULL,
+  `idusuariocaptura` int(11) DEFAULT NULL,
+  `fechacaptura` varchar(45) DEFAULT NULL,
+  `estado` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idcategoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
