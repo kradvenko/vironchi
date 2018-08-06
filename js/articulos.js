@@ -1,5 +1,6 @@
 //Variables para el módulo de articulos
-a_IdCategoriaSeleccionadaModificar = 0;
+var a_IdCategoriaSeleccionadaModificar = 0;
+var a_IdArticuloSeleccionado = 0;
 //Funciones para el módulo de artículos
 function agregarNuevaCategoria() {
     var categoria = $("#tbNuevaCategoria").val();
@@ -68,6 +69,7 @@ function limpiarCamposNuevoArticulo() {
     $("#tbNuevoArticuloPrecioPublico").val("0");
     $("#tbNuevoArticuloCantidadMinima").val("0");
     $("#tbNuevoArtículoPrecioCompra").val("0");
+    a_IdArticuloSeleccionado = 0;
 }
 
 function agregarNuevoArticulo() {
@@ -102,4 +104,34 @@ function obtenerArticulosInventario() {
     $.ajax({url: "php/obtenerArticulosInventario.php", async: false, type: "POST", data: { idCategoria: idCategoria, estado: '%' }, success: function(res) {
         $("#divArticulosInventario").html(res);
     }});
+}
+
+function modificarArticulo(id) {
+    a_IdArticuloSeleccionado = id;
+    
+    $.ajax({url: "php/obtenerCategoriasSelect.php", async: false, type: "POST", data: { idSelect: 'selCategoriasModificarArticulo', estado: 'ACTIVO' }, success: function(res) {
+        $("#divCategoriasModificarArticulo").html(res);
+    }});
+
+    $.ajax({url: "php/obtenerArticuloXML.php", async: false, type: "POST", data: { idArticulo: id, estado: 'ACTIVO' }, success: function(res) {
+        $('resultado', res).each(function(index, element) {
+            $("#tbModificarArticuloNombre").val($(this).find("nombre").text());
+            $("#selCategoriasModificarArticulo").val($(this).find("idcategoria").text());
+            $("#tbModificarArticuloClave").val($(this).find("clave").text());
+            $("#tbModificarArticuloDescripcion").val($(this).find("descripcion").text());
+            $("#tbModificarArticuloCantidad").val($(this).find("cantidad").text());
+            $("#tbModificarArticuloPrecioPublico").val($(this).find("preciopublico").text());
+            $("#tbModificarArticuloCantidadMinima").val($(this).find("cantidadminima").text());
+            $("#tbModificarArtículoPrecioCompra").val($(this).find("preciocompra").text());
+        });
+    }});
+    $('#modalModificarArticulo').modal('show');
+}
+
+function obtenerDatosArticulo(id) {
+
+}
+
+function limpiarCamposModificarArticulo() {
+
 }
