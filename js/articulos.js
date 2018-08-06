@@ -52,7 +52,21 @@ function limpiarCamposModificarCategoria() {
 }
 
 function modificarCategoria() {
-    alert(a_IdCategoriaSeleccionadaModificar);
+    var nuevoNombre = $("#tbModificarCategoria").val();
+    if (nuevoNombre.length == 0) {
+        alert("No ha escrito el nuevo nombre de la categoría.")
+        return;
+    }
+    $.ajax({url: "php/modificarCategoria.php", async: false, type: "POST", data: { idCategoria: a_IdCategoriaSeleccionadaModificar, nuevoNombre: nuevoNombre }, success: function(res) {
+        if (res == "OK") {
+            alert("Se ha modificado la categoría.");
+            $('#modalModificarCategoria').modal('hide');
+            limpiarCamposModificarCategoria();
+            obtenerCategoriasSelect();
+        } else {
+            alert(res);
+        }
+    }});
 }
 
 function obtenerCategoriasNuevoArticulo() {
@@ -106,9 +120,34 @@ function obtenerArticulosInventario() {
     }});
 }
 
-function modificarArticulo(id) {
+function modificarArticulo() {
+    var nombre = $("#tbModificarArticuloNombre").val();
+    var idCategoria = $("#selCategoriasModificarArticulo").val();
+    var clave = $("#tbModificarArticuloClave").val();
+    var descripcion = $("#tbModificarArticuloDescripcion").val();
+    var cantidad = $("#tbModificarArticuloCantidad").val();
+    var precioPublico = $("#tbModificarArticuloPrecioPublico").val();
+    var cantidadMinima = $("#tbModificarArticuloCantidadMinima").val();
+    var precioCompra = $("#tbModificarArtículoPrecioCompra").val();
+    if (nombre.length == 0) {
+        alert("No ha ingresado el nombre del artículo.");
+        return;
+    }
+    $.ajax({url: "php/modificarArticulo.php", async: false, type: "POST", data: { idArticulo: a_IdArticuloSeleccionado, nombre: nombre, idCategoria: idCategoria, clave: clave, descripcion: descripcion,
+        cantidad: cantidad, precioPublico: precioPublico, cantidadMinima: cantidadMinima, precioCompra: precioCompra }, success: function(res) {
+        if (res == "OK") {
+            alert("Se ha modificado el artículo.");
+            $('#modalModificarArticulo').modal('hide');
+            limpiarCamposModificarArticulo();
+            obtenerArticulosInventario();
+        } else {
+            alert(res);
+        }
+    }});
+}
+
+function obtenerDatosArticulo(id) {
     a_IdArticuloSeleccionado = id;
-    
     $.ajax({url: "php/obtenerCategoriasSelect.php", async: false, type: "POST", data: { idSelect: 'selCategoriasModificarArticulo', estado: 'ACTIVO' }, success: function(res) {
         $("#divCategoriasModificarArticulo").html(res);
     }});
@@ -128,10 +167,13 @@ function modificarArticulo(id) {
     $('#modalModificarArticulo').modal('show');
 }
 
-function obtenerDatosArticulo(id) {
-
-}
-
 function limpiarCamposModificarArticulo() {
-
+    a_IdArticuloSeleccionado = 0;
+    $("#tbModificarArticuloNombre").val("");
+    $("#tbModificarArticuloClave").val("");
+    $("#tbModificarArticuloDescripcion").val("");
+    $("#tbModificarArticuloCantidad").val("0");
+    $("#tbModificarArticuloPrecioPublico").val("0");
+    $("#tbModificarArticuloCantidadMinima").val("0");
+    $("#tbModificarArtículoPrecioCompra").val("0");
 }

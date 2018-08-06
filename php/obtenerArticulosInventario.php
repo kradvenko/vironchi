@@ -55,7 +55,7 @@
             echo $row["cantidad"];
             echo "</div>";
             echo "<div class='col-2 divMargin'>";
-            echo "<input type='button' class='btn btn-info' value='Modificar' onclick='modificarArticulo(" . $row["idarticulo"] . ")' />";
+            echo "<input type='button' class='btn btn-info' value='Modificar' onclick='obtenerDatosArticulo(" . $row["idarticulo"] . ")' />";
             echo "</div>";
         }
         
