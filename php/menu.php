@@ -25,6 +25,13 @@
                         </div>
                     </div>
                     <div class="dropdown">
+                        <a href="" id="aVentas" class="mainMenuElement">Ventas</a>
+                        <div class="dropdown-content">
+                            <a href="nuevaventa.php" id="aNuevaVenta">Nueva venta</a>
+                            <a href="corte.php" id="aCorte">Corte</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
                         <a href="articulos.php" id="aArticulos" class="mainMenuElement">Artículos</a>
                     </div>
                     <!--<div class="dropdown">

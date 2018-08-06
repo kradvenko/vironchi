@@ -115,6 +115,9 @@ function agregarNuevoArticulo() {
 
 function obtenerArticulosInventario() {
     var idCategoria = $("#selCategorias").val();
+    if (idCategoria.length == 0) {
+        return;
+    }
     $.ajax({url: "php/obtenerArticulosInventario.php", async: false, type: "POST", data: { idCategoria: idCategoria, estado: '%' }, success: function(res) {
         $("#divArticulosInventario").html(res);
     }});
