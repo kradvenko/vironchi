@@ -177,3 +177,32 @@ CREATE TABLE `vir_articulos` (
   PRIMARY KEY (`idarticulo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--07/08/2018
+CREATE TABLE `vir_ventas` (
+  `idventa` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` varchar(45) DEFAULT NULL,
+  `subtotal` float DEFAULT NULL,
+  `descuentoporcentaje` float DEFAULT NULL,
+  `descuentocantidad` float DEFAULT NULL,
+  `total` float DEFAULT NULL,
+  `estado` varchar(45) DEFAULT NULL,
+  `tipo` varchar(45) DEFAULT NULL,
+  `cambio` float DEFAULT NULL,
+  `iva` float DEFAULT NULL,
+  `idusuario` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idventa`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `vir_detalleventa` (
+  `iddetalleventa` int(11) NOT NULL AUTO_INCREMENT,
+  `idventa` int(11) DEFAULT NULL,
+  `idarticulo` int(11) DEFAULT NULL,
+  `cantidad` int(11) DEFAULT NULL,
+  `descuentoporcentaje` float DEFAULT NULL,
+  `descuentocantidad` float DEFAULT NULL,
+  `preciopublico` float DEFAULT NULL,
+  `subtotal` float DEFAULT NULL,
+  `total` float DEFAULT NULL,
+  PRIMARY KEY (`iddetalleventa`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
