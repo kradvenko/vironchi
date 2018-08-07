@@ -13,7 +13,7 @@
     <script src="js/veterinaria.js"></script>
     <script src="js/revisarcitas.js"></script>
 
-    <title>Veterinaria Vironchi - Nueva Cita</title>
+    <title>Veterinaria Vironchi - Revisar citas</title>
 </head>
 <body>
     <div class="container mainContainer">

@@ -10,7 +10,7 @@
     <script src="js/bootstrap.js"></script>
     <script src="js/veterinaria.js"></script>
 
-    <title>Veterinaria Vironchi - Nueva Cita</title>
+    <title>Veterinaria Vironchi - Inicio</title>
 </head>
 <body>
     <div class="container mainContainer">

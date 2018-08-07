@@ -169,8 +169,7 @@ function finCita() {
         } else {
             alert("No se ha podido finalizar la cita: " + res);
         }
-    }});
-    
+    }});    
 }
 
 function cargarDatosCliente(idCliente) {

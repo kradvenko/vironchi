@@ -151,7 +151,6 @@ function mostrarPantallaVenta() {
 }
 
 function realizarVenta() {
-
     var fecha = obtenerFechaHoraActual('FULL');
     var subTotal = nv_SubTotal;
     var descuentoPorcentaje = nv_DescuentoPorcentaje;
@@ -175,9 +174,25 @@ function realizarVenta() {
 }
 
 function limpiarCamposPantallaVenta() {
-
+    $("#selTipoVenta").val("0");
+    $("#tbEfectivo").val("0");
+    $("#lblCambio").text("0");
 }
 
 function calcularCambio() {
-
+    var efectivo =  $("#tbEfectivo").val();
+    if (isNaN(efectivo)) {
+        alert("No ha escrito un número válido.");
+        $("#tbEfectivo").val("0");
+        $("#tbEfectivo").focus();
+        return;
+    }
+    if (efectivo < nv_Total) {
+        alert("El efectivo es menor que el total.");
+        $("#tbEfectivo").val("0");
+        $("#tbEfectivo").focus();
+        return;
+    }
+    var cambio = efectivo - nv_Total;
+    $("#lblCambio").text(cambio);
 }

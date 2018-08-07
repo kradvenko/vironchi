@@ -14,7 +14,7 @@
     <script src="js/nuevaventa.js"></script>
     <script src="js/jquery-ui.min.js"></script>
 
-    <title>Veterinaria Vironchi - Nueva Cita</title>
+    <title>Veterinaria Vironchi - Nueva venta</title>
 </head>
 <body>
     <div class="container mainContainer">
@@ -33,10 +33,13 @@
         </div>
         <div class="row divMargin divBackgroundOrange divCenter">
             <div class="col-12">
-                Buscar artículo
+                Nueva venta
             </div>            
         </div>
         <div class="row divMargin divCenter">
+            <div class="col-12">
+                Buscar artículo
+            </div>
             <div class="col-12">
                 <input type="text" class="form-control" id="tbBusqueda" />
             </div>

@@ -15,7 +15,7 @@
     <script src="js/veterinaria.js"></script>
     <script src="js/nuevacita.js"></script>
 
-    <title>Veterinaria Vironchi - Nueva Cita</title>
+    <title>Veterinaria Vironchi - Nueva cita</title>
 
 </head>
 <body>
