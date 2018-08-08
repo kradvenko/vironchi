@@ -126,6 +126,14 @@
         <div class="row divMargin" id="divCorteCitas">
             
         </div>
+        <div class="row divMargin divBackgroundOrange divCenter">
+            <div class="col-12">
+                Pagos
+            </div>
+        </div>
+        <div class="row divMargin" id="divCortePagos">
+            
+        </div>
         <div class="row divBackgroundBlack">
             <div class="col-12 mainFooter">
                 <b>Veterinaria Vironchi</b> © Derechos Reservados 2018.

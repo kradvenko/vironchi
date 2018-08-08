@@ -756,6 +756,7 @@ input {
     font-size: 20px;
     border-bottom: 3px solid #188db1;
     margin-bottom: 20px;
+    background-color: #9ad8eb;
 }
 
 .divHeaderLista {    
@@ -763,6 +764,7 @@ input {
     font-size: 18px;
     border-bottom: 3px solid #82ad2b;
     margin-bottom: 20px;
+    background-color: #cdf381;
 }
 
 .divNombre {
@@ -771,4 +773,8 @@ input {
 
 .divNombre:hover {
     border-bottom: 2px solid #910027;
+}
+
+.divTotales {
+    background-color: rgb(108, 202, 155);
 }

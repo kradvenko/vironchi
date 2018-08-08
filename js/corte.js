@@ -15,4 +15,10 @@ function generarCorte() {
     $.ajax({url: "php/obtenerCorteVentas.php", async: false, type: "POST", data: { fecha: fecha }, success: function(res) {
         $("#divCorteVentas").html(res);
     }});
+    $.ajax({url: "php/obtenerCorteCitas.php", async: false, type: "POST", data: { fecha: fecha }, success: function(res) {
+        $("#divCorteCitas").html(res);
+    }});
+    $.ajax({url: "php/obtenerCortePagos.php", async: false, type: "POST", data: { fecha: fecha }, success: function(res) {
+        $("#divCortePagos").html(res);
+    }});
 }

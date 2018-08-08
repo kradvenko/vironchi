@@ -687,6 +687,7 @@
                 elegirCliente(ui.item.id);
             }
         });
+        $("#tbCliente").focus();
     });
     $('#modalAgregarCliente').on('shown.bs.modal', function() {
         $('#tbNombreCliente').focus();

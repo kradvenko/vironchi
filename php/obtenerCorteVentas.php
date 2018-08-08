@@ -12,6 +12,10 @@
 
         $con = new mysqli($hn, $un, $pw, $db);
 
+        $totalEfectivo = 0;
+        $totalTarjeta = 0;
+        $totalVentas = 0;
+
         $sql = "Select $tablaVentas.*, $tablaDetalleVenta.*, $tablaArticulos.nombre As articulo
                 From $tablaVentas
                 Inner Join $tablaDetalleVenta
@@ -37,7 +41,10 @@
         echo "<div class='col-1 divHeaderLista'>";
         echo "Total";
         echo "</div>";
-        echo "<div class='col-3 divHeaderLista'>";
+        echo "<div class='col-2 divHeaderLista'>";
+        echo "Tipo";
+        echo "</div>";
+        echo "<div class='col-1 divHeaderLista'>";
         echo "";
         echo "</div>";
 
@@ -57,13 +64,49 @@
             echo "<div class='col-1'>";
             echo $row["total"];
             echo "</div>";
-            echo "<div class='col-3'>";
-            
+            echo "<div class='col-2'>";
+            echo $row["tipo"];
+            echo "</div>";
+            echo "<div class='col-1'>";
             echo "</div>";
 
             echo "<div class='col-12 divMargin'>";
             echo "</div>";
-        }            
+
+            if ($row["tipo"] == "EFECTIVO") {
+                $totalEfectivo = $totalEfectivo + $row["total"];
+            } else if ($row["tipo"] == "TARJETA") {
+                $totalTarjeta = $totalTarjeta + $row["total"];
+            }
+        }
+        $totalVentas = $totalEfectivo + $totalTarjeta;
+        echo "<div class='col-12 divHeaderLista'>";
+        echo "</div>";
+        echo "<div class='col-3 divTotales'>";
+        echo "Total de ventas en efectivo";
+        echo "</div>";
+        echo "<div class='col-1'";
+        echo "<label id='lblVentaEfectivo'>";
+        echo $totalEfectivo;
+        echo "</label>";
+        echo "</div>";
+        echo "<div class='col-3 divTotales'>";
+        echo "Total de ventas tarjeta";
+        echo "</div>";
+        echo "<div class='col-1'";
+        echo "<label id='lvlVentaTarjeta'>";
+        echo $totalTarjeta;
+        echo "</label>";
+        echo "</div>";
+        echo "<div class='col-3 divTotales'>";
+        echo "Total de ventas";
+        echo "</div>";
+        echo "<div class='col-1'";
+        echo "<label id='lvlVentaTarjeta'>";
+        echo $totalVentas;
+        echo "</label>";
+        echo "</div>";
+
         mysqli_close($con);
     }
     catch (Throwable $t)
