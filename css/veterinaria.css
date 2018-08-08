@@ -776,5 +776,6 @@ input {
 }
 
 .divTotales {
-    background-color: rgb(108, 202, 155);
+    /*background-color: rgb(108, 202, 155);*/
+    border: 2px solid #233500;
 }
