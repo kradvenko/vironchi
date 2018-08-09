@@ -110,7 +110,21 @@
                 <input type="button" class="btn btn-success" value="Generar corte" onclick="generarCorte()" />
             </div>
         </div>
-        <div class="row divMargin divBackgroundOrange divCenter">
+        <div class="row divMargin">
+            <div class="col-2">
+                Total en efectivo
+            </div>
+            <div class="col-1" id="divTotalEfectivo">
+                $ 0
+            </div>
+            <div class="col-2">
+                Total tarjeta
+            </div>
+            <div class="col-1" id="divTotalTarjeta">
+                $ 0
+            </div>
+        </div>
+        <div class="row divMargin divBackgroundVentas divCenter">
             <div class="col-12">
                 Ventas
             </div>
@@ -118,7 +132,7 @@
         <div class="row divMargin" id="divCorteVentas">
             
         </div>
-        <div class="row divMargin divBackgroundOrange divCenter">
+        <div class="row divMargin divBackgroundCitas divCenter">
             <div class="col-12">
                 Citas
             </div>
@@ -126,7 +140,7 @@
         <div class="row divMargin" id="divCorteCitas">
             
         </div>
-        <div class="row divMargin divBackgroundOrange divCenter">
+        <div class="row divMargin divBackgroundPagos divCenter">
             <div class="col-12">
                 Pagos
             </div>

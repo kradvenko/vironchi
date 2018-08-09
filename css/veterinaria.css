@@ -767,6 +767,54 @@ input {
     background-color: #cdf381;
 }
 
+.divBackgroundCitas {
+    color: #000000;    
+    font-size: 20px;
+    border-bottom: 3px solid #8b1371;
+    margin-bottom: 20px;
+    background-color: #faaee9;
+}
+
+.divHeaderListaCorteCitas {
+    color: #000000;
+    font-size: 18px;
+    border-bottom: 3px solid #8b1371;
+    margin-bottom: 20px;
+    background-color: #faaee9;
+}
+
+.divBackgroundPagos {
+    color: #000000;    
+    font-size: 20px;
+    border-bottom: 3px solid #41138b;
+    margin-bottom: 20px;
+    background-color: #c2aefa;
+}
+
+.divHeaderListaPagos {
+    color: #000000;
+    font-size: 18px;
+    border-bottom: 3px solid #41138b;
+    margin-bottom: 20px;
+    background-color: #c2aefa;
+}
+
+.divBackgroundVentas {
+    color: #000000;    
+    font-size: 20px;
+    border-bottom: 3px solid #8b1313;
+    margin-bottom: 20px;
+    background-color: #faaeb8;
+}
+
+.divHeaderListaVentas {
+    color: #000000;
+    font-size: 18px;
+    border-bottom: 3px solid #8b1313;
+    margin-bottom: 20px;
+    background-color: #faaeb8;
+}
+
 .divNombre {
     cursor: pointer;
 }

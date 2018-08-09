@@ -23,22 +23,22 @@
 
         $result = $con->query($sql);
 
-        echo "<div class='col-1 divHeaderLista'>";
+        echo "<div class='col-1 divHeaderListaCorteCitas'>";
         echo "Cita";
         echo "</div>";
-        echo "<div class='col-3 divHeaderLista'>";
+        echo "<div class='col-3 divHeaderListaCorteCitas'>";
         echo "Fecha";
         echo "</div>";
-        echo "<div class='col-3 divHeaderLista'>";
+        echo "<div class='col-3 divHeaderListaCorteCitas'>";
         echo "Mascota";
         echo "</div>";
-        echo "<div class='col-3 divHeaderLista'>";
+        echo "<div class='col-3 divHeaderListaCorteCitas'>";
         echo "Cliente";
         echo "</div>";
-        echo "<div class='col-1 divHeaderLista'>";
+        echo "<div class='col-1 divHeaderListaCorteCitas'>";
         echo "Anticipo";
         echo "</div>";
-        echo "<div class='col-1 divHeaderLista'>";
+        echo "<div class='col-1 divHeaderListaCorteCitas'>";
         echo "";
         echo "</div>";
 
@@ -66,7 +66,7 @@
 
             $totalAnticipos = $totalAnticipos + $row["anticipo"];
         }
-        echo "<div class='col-12 divHeaderLista'>";
+        echo "<div class='col-12 divHeaderListaCorteCitas'>";
         echo "</div>";
         echo "<div class='col-3 divTotales'>";
         echo "Total en anticipos";

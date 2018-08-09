@@ -21,4 +21,8 @@ function generarCorte() {
     $.ajax({url: "php/obtenerCortePagos.php", async: false, type: "POST", data: { fecha: fecha }, success: function(res) {
         $("#divCortePagos").html(res);
     }});
+    var totalEfectivo = parseFloat($("#lblVentaEfectivo").text()) + parseFloat($("#lblAnticipos").text()) + parseFloat($("#lblPagos").text());
+    var totalTarjeta = parseFloat($("#lvlVentaTarjeta").text());
+    $("#divTotalEfectivo").html("$ " + totalEfectivo);
+    $("#divTotalTarjeta").html("$ " + totalTarjeta);
 }

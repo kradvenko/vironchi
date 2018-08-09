@@ -25,22 +25,22 @@
 
         $result = $con->query($sql);
 
-        echo "<div class='col-1 divHeaderLista'>";
+        echo "<div class='col-1 divHeaderListaPagos'>";
         echo "Cita";
         echo "</div>";
-        echo "<div class='col-3 divHeaderLista'>";
+        echo "<div class='col-3 divHeaderListaPagos'>";
         echo "Fecha";
         echo "</div>";
-        echo "<div class='col-3 divHeaderLista'>";
+        echo "<div class='col-3 divHeaderListaPagos'>";
         echo "Mascota";
         echo "</div>";
-        echo "<div class='col-3 divHeaderLista'>";
+        echo "<div class='col-3 divHeaderListaPagos'>";
         echo "Cliente";
         echo "</div>";
-        echo "<div class='col-1 divHeaderLista'>";
+        echo "<div class='col-1 divHeaderListaPagos'>";
         echo "Pago";
         echo "</div>";
-        echo "<div class='col-1 divHeaderLista'>";
+        echo "<div class='col-1 divHeaderListaPagos'>";
         echo "";
         echo "</div>";
 
@@ -68,10 +68,10 @@
 
             $totalPagos = $totalPagos + $row["cantidad"];
         }
-        echo "<div class='col-12 divHeaderLista'>";
+        echo "<div class='col-12 divHeaderListaPagos'>";
         echo "</div>";
         echo "<div class='col-3 divTotales'>";
-        echo "Total en anticipos";
+        echo "Total en pagos";
         echo "</div>";
         echo "<div class='col-1'";
         echo "<label id='lblPagos'>";

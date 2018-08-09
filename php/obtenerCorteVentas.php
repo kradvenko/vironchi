@@ -26,25 +26,25 @@
 
         $result = $con->query($sql);
 
-        echo "<div class='col-1 divHeaderLista'>";
+        echo "<div class='col-1 divHeaderListaVentas'>";
         echo "Venta";
         echo "</div>";
-        echo "<div class='col-3 divHeaderLista'>";
+        echo "<div class='col-3 divHeaderListaVentas'>";
         echo "Fecha";
         echo "</div>";
-        echo "<div class='col-3 divHeaderLista'>";
+        echo "<div class='col-3 divHeaderListaVentas'>";
         echo "Artículo";
         echo "</div>";
-        echo "<div class='col-1 divHeaderLista'>";
+        echo "<div class='col-1 divHeaderListaVentas'>";
         echo "Cantidad";
         echo "</div>";
-        echo "<div class='col-1 divHeaderLista'>";
+        echo "<div class='col-1 divHeaderListaVentas'>";
         echo "Total";
         echo "</div>";
-        echo "<div class='col-2 divHeaderLista'>";
+        echo "<div class='col-2 divHeaderListaVentas'>";
         echo "Tipo";
         echo "</div>";
-        echo "<div class='col-1 divHeaderLista'>";
+        echo "<div class='col-1 divHeaderListaVentas'>";
         echo "";
         echo "</div>";
 
@@ -80,7 +80,7 @@
             }
         }
         $totalVentas = $totalEfectivo + $totalTarjeta;
-        echo "<div class='col-12 divHeaderLista'>";
+        echo "<div class='col-12 divHeaderListaVentas'>";
         echo "</div>";
         echo "<div class='col-3 divTotales'>";
         echo "Total de ventas en efectivo";
