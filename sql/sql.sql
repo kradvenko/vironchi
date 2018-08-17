@@ -20,25 +20,6 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --19/07/2018
-CREATE TABLE `clientes` (
-  `idcliente` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(300) DEFAULT NULL,
-  `direccion` varchar(100) DEFAULT NULL,
-  `colonia` varchar(45) DEFAULT NULL,
-  `municipio` varchar(45) DEFAULT NULL,
-  `telefono1` varchar(45) DEFAULT NULL,
-  `telefono2` varchar(45) DEFAULT NULL,
-  `correo` varchar(45) DEFAULT NULL,
-  `estado` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idcliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-ALTER TABLE `clientes` 
-ADD COLUMN `idtienda` INT NULL AFTER `idcliente`;
-
-ALTER TABLE `clientes` 
-ADD COLUMN `fechacaptura` VARCHAR(45) NULL AFTER `estado`;
-
 
 CREATE TABLE `clientes` (
   `idcliente` int(11) NOT NULL AUTO_INCREMENT,
@@ -72,7 +53,7 @@ CREATE TABLE `vir_citas` (
   `cm_peso` varchar(45) DEFAULT NULL,
   `cm_temperatura` varchar(45) DEFAULT NULL,
   `cm_aparienciageneral` varchar(45) DEFAULT NULL,
-  `cm_aparicenciageneralnotas` varchar(200) DEFAULT NULL,
+  `cm_aparienciageneralnotas` varchar(200) DEFAULT NULL,
   `cm_piel` varchar(45) DEFAULT NULL,
   `cm_pielnotas` varchar(200) DEFAULT NULL,
   `cm_muscoesqueleto` varchar(45) DEFAULT NULL,
@@ -98,12 +79,15 @@ CREATE TABLE `vir_citas` (
   `cm_listaproblemas` varchar(500) DEFAULT NULL,
   `cm_planesdiagnosticos` varchar(500) DEFAULT NULL,
   `cm_planesterapeuticos` varchar(500) DEFAULT NULL,
-  `cm_instruccionesclientes` varchar(500) DEFAULT NULL,
+  `cm_instruccionescliente` varchar(500) DEFAULT NULL,
   `cm_notas` varchar(500) DEFAULT NULL,
   `estado` varchar(45) DEFAULT NULL,
   `fechacaptura` varchar(45) DEFAULT NULL,
+  `fechafinalizado` varchar(45) DEFAULT NULL,
+  `idusuariocaptura` int(11) DEFAULT NULL,
   PRIMARY KEY (`idcita`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --20/07/2018
 CREATE TABLE `mascotas` (
   `idmascota` int(11) NOT NULL AUTO_INCREMENT,
@@ -144,12 +128,6 @@ CREATE TABLE `vir_pagos` (
   PRIMARY KEY (`idpago`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 --27/07/2018
-ALTER TABLE `vir_citas` 
-ADD COLUMN `fechafinalizado` VARCHAR(45) NULL AFTER `fechacaptura`;
-
---04/08/2018
-ALTER TABLE `vir_citas` 
-ADD COLUMN `idusuariocaptura` INT NULL AFTER `fechafinalizado`;
 
 CREATE TABLE `categorias` (
   `idcategoria` int(11) NOT NULL AUTO_INCREMENT,
