@@ -131,7 +131,7 @@ CREATE TABLE `razas` (
   `idespecie` int(11) DEFAULT NULL,
   `raza` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   PRIMARY KEY (`idraza`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --26/07/2018
 CREATE TABLE `vir_pagos` (
