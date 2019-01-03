@@ -29,7 +29,9 @@
 
         $con->query($sql);
 
-        echo "OK";
+        $id = $con->insert_id;
+
+        echo $id;
 
         mysqli_close($con);
     }

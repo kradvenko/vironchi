@@ -100,9 +100,11 @@ function agregarNuevoCliente() {
     var estado = "ACTIVO";
 
     $.ajax({url: "php/agregarCliente.php", async: false, type: "POST", data: { nombre: nombre, direccion: direccion, colonia: colonia, municipio: municipio, telefono1: telefono1, telefono2: telefono2, correo: correo, fechaCaptura: fechaCaptura, estado: estado }, success: function(res) {
-        if (res == "OK") {
+        if (res > 0) {
             alert("Se ha ingresado el cliente.");
             $('#modalAgregarCliente').modal('hide');
+            nc_IdClienteElegido = res;
+            $("#tbCliente").val($("#tbNombreCliente").val());
         } else {
             alert(res);
         }
@@ -164,7 +166,7 @@ function agregarNuevaMascota() {
     $.ajax({url: "php/agregarMascota.php", async: false, type: "POST", data: { idCliente: idCliente, idEspecie: idEspecie, idRaza: idRaza, nombre: nombre, fechaNacimiento: fechaNacimiento,
      edad: edad, caracteristicas: caracteristicas, fechaCaptura: fechaCaptura, estado: estado }, success: function(res) {
         if (res == "OK") {
-            alert("Se ha ingresado la especie.");
+            alert("Se ha ingresado la mascota.");
             $('#modalAgregarMascota').modal('hide');
             limpiarCamposNuevaMascota();
             obtenerMascotasCliente();
