@@ -34,6 +34,12 @@
                     <div class="dropdown">
                         <a href="articulos.php" id="aArticulos" class="mainMenuElement">Artículos</a>
                     </div>
+                    <div class="dropdown">
+                        <a href="" id="aClientes" class="mainMenuElement">Clientes</a>
+                        <div class="dropdown-content">
+                            <a href="clientes.php" id="ControlClientes">Control de clientes</a>                            
+                        </div>
+                    </div>
                     <!--<div class="dropdown">
                         <a href="contacto.php" id="aContacto" class="mainMenuElement">Contacto</a>                        
                     </div>-->
