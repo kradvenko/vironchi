@@ -142,14 +142,24 @@
                 echo "<div class='col-2 divNombre' onclick='cargarDatosMascota(" . $row["idmascota"] . ")'>";
                 echo $row["mascota"];
                 echo "</div>";
+                /*
                 echo "<div class='col-2'>";
+                echo $row["tipo"];
+                echo "</div>";
+                */
+                echo "<div class='col-2 divNombre' onclick='detallesCita(" . $row["idcita"] . ", \"" . $row["tipo"] . "\")'>";
                 echo $row["tipo"];
                 echo "</div>";
                 echo "<div class='col-2'>";
                 echo $row["diacita"] . "/" . $row["mescita"] . "/" . $row["anocita"];
                 echo "</div>";
+                /*
                 echo "<div class='col-1'>";
                 echo "<input type='button' class='btn btn-info' value='Detalles' onclick='detallesCita(" . $row["idcita"] . ", \"" . $row["tipo"] . "\")' />";
+                echo "</div>";
+                */
+                echo "<div class='col-1'>";
+                echo "<input type='button' class='btn btn-info' value='Pagos' onclick='verPagos(" . $row["idcita"] . ")' />";
                 echo "</div>";
                 echo "<div class='col-1'>";
                 if ($row["estado"] == "ACTIVO") {

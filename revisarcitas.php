@@ -114,7 +114,7 @@
                 </select>
             </div>
             <div class="col-2">
-                <input type="text" id="tbAño" class="form-control"></input>
+                <input type="text" id="tbAño" class="form-control" />
             </div>
             <div class="col-3">
                 <select id="selTipoCita" class="form-control">

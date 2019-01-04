@@ -54,6 +54,7 @@
             </div>
             <div class="col-2">
                 <select id="selDia" class="form-control">
+                    <option value="%">Todos</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
                     <option value="03">03</option>
