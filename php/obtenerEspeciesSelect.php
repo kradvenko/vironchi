@@ -17,7 +17,12 @@
 
         $result = $con->query($sql);
 
-        echo "<select class='form-control' onchange='obtenerRazasSelect()' id='" . $idSelect . "'>";
+        if (strpos($idSelect, 'Modificar') == false) {
+            echo "<select class='form-control' onchange='obtenerRazasSelect()' id='" . $idSelect . "'>";
+        } else {
+            echo "<select class='form-control' onchange='obtenerRazasSelectModificar()' id='" . $idSelect . "'>";
+        }
+        
 
         while ($row = $result->fetch_array()) {
             echo "<option value='" . $row["idespecie"] . "'>" . $row["especie"] . "</option>";
