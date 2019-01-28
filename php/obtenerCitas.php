@@ -24,16 +24,18 @@
                     On clientes.idcliente = $tabla.idcliente
                     Inner Join mascotas
                     On mascotas.idmascota = $tabla.idmascota
-                    Where diacita Like '$diaCita' And mescita Like '$mesCita' And anocita Like '$anoCita' And $tabla.tipo Like '$tipoCita' And ($tabla.estado = 'ACTIVO'";
+                    Where diacita Like '$diaCita' And mescita Like '$mesCita' And anocita Like '$anoCita' And $tabla.tipo Like '$tipoCita' And ($tabla.estado = 'ACTIVO' ";
 
             if ($incluirFinalizadas == "SI") {
-                $sql = $sql . " Or $tabla.estado = 'FINALIZADO')";
+                $sql = $sql . " Or $tabla.estado = 'FINALIZADO') ";
             } else {
                 $sql = $sql . ")";
             }
             if ($noPagadas == "SI") {
-                $sql = $sql . " And $tabla.restan > 0";
+                $sql = $sql . " And $tabla.restan > 0 ";
             }
+
+            $sql = $sql . "Order By STR_TO_DATE(CONCAT(diacita, '/', mescita, '/', anocita), '%d/%m/%Y') ASC ";
 
             $result = $con->query($sql);
 
@@ -59,7 +61,84 @@
             echo "";
             echo "</div>";
 
+            $lastMonth = "0";
+            
             while ($row = $result->fetch_array()) {
+                switch ($row["mescita"]) {
+                    case '01':  
+                                if ($row["mescita"] != $lastMonth) {
+                                    $lastMonth = $row["mescita"];
+                                    echo "<div class='col-12 divHeaderMes'>ENERO</div>";
+                                }
+                                break;
+                    case '02':  
+                                if ($row["mescita"] != $lastMonth) {
+                                    $lastMonth = $row["mescita"];
+                                    echo "<div class='col-12 divHeaderMes'>FEBRERO</div>";
+                                }
+                                break;
+                    case '03':  
+                                if ($row["mescita"] != $lastMonth) {
+                                    $lastMonth = $row["mescita"];
+                                    echo "<div class='col-12 divHeaderMes'>MARZO</div>";
+                                }
+                                break;
+                    case '04':  
+                                if ($row["mescita"] != $lastMonth) {
+                                    $lastMonth = $row["mescita"];
+                                    echo "<div class='col-12 divHeaderMes'>ABRIL</div>";
+                                }
+                                break;
+                    case '05':  
+                                if ($row["mescita"] != $lastMonth) {
+                                    $lastMonth = $row["mescita"];
+                                    echo "<div class='col-12 divHeaderMes'>MAYO</div>";
+                                }
+                                break;
+                    case '06':  
+                                if ($row["mescita"] != $lastMonth) {
+                                    $lastMonth = $row["mescita"];
+                                    echo "<div class='col-12 divHeaderMes'>JUNIO</div>";
+                                }
+                                break;
+                    case '07':  
+                                if ($row["mescita"] != $lastMonth) {
+                                    $lastMonth = $row["mescita"];
+                                    echo "<div class='col-12 divHeaderMes'>JULIO</div>";
+                                }
+                                break;
+                    case '08':  
+                                if ($row["mescita"] != $lastMonth) {
+                                    $lastMonth = $row["mescita"];
+                                    echo "<div class='col-12 divHeaderMes'>AGOSTO</div>";
+                                }
+                                break;
+                    case '09':  
+                                if ($row["mescita"] != $lastMonth) {
+                                    $lastMonth = $row["mescita"];
+                                    echo "<div class='col-12 divHeaderMes'>SEPTIEMBRE</div>";
+                                }
+                                break;
+                    case '10':  
+                                if ($row["mescita"] != $lastMonth) {
+                                    $lastMonth = $row["mescita"];
+                                    echo "<div class='col-12 divHeaderMes'>OCTUBRE</div>";
+                                }
+                                break;
+                    case '11':  
+                                if ($row["mescita"] != $lastMonth) {
+                                    $lastMonth = $row["mescita"];
+                                    echo "<div class='col-12 divHeaderMes'>NOVIEMBRE</div>";
+                                }
+                                break;
+                    case '12':  
+                                if ($row["mescita"] != $lastMonth) {
+                                    $lastMonth = $row["mescita"];
+                                    echo "<div class='col-12 divHeaderMes'>DICIEMBRE</div>";
+                                }
+                                break;
+                                
+                }
                 echo "<div class='col-3 divNombre' onclick='cargarDatosCliente(" . $row["idcliente"] . ")'>";
                 echo $row["cliente"];
                 echo "</div>";
