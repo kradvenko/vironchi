@@ -173,6 +173,7 @@
                 Citas
             </div>
         </div>
+        <button onclick="topFunction()" id="btnTop" title="Go to top">Top</button> 
         <div class="row divMargin" id="divCitas">
             
         </div>
@@ -775,5 +776,21 @@
     $('#modalNuevoPago').on('shown.bs.modal', function() {
         $('#tbCantidadPago').focus();
     });
+
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("btnTop").style.display = "block";
+        } else {
+            document.getElementById("btnTop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    } 
 </script>
 </html>
