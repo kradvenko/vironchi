@@ -39,6 +39,19 @@
 
             $result = $con->query($sql);
 
+            echo "<div class='col-1'><a href='#divEnero'>Enero</a></div>";
+            echo "<div class='col-1'><a href='#divFebrero'>Febrero</a></div>";
+            echo "<div class='col-1'><a href='#divMarzo'>Marzo</a></div>";
+            echo "<div class='col-1'><a href='#divAbril'>Abril</a></div>";
+            echo "<div class='col-1'><a href='#divMayo'>Mayo</a></div>";
+            echo "<div class='col-1'><a href='#divJunio'>Junio</a></div>";
+            echo "<div class='col-1'><a href='#divJulio'>Julio</a></div>";
+            echo "<div class='col-1'><a href='#divAgosto'>Agosto</a></div>";
+            echo "<div class='col-1'><a href='#divSeptiembre'>Sept.</a></div>";
+            echo "<div class='col-1'><a href='#divOctubre'>Octubre</a></div>";
+            echo "<div class='col-1'><a href='#divNoviembre'>Nov.</a></div>";
+            echo "<div class='col-1'><a href='#divDiciembre'>Dic.</a></div>";
+
             echo "<div class='col-3 divHeaderLista'>";
             echo "Cliente";
             echo "</div>";
@@ -68,73 +81,73 @@
                     case '01':  
                                 if ($row["mescita"] != $lastMonth) {
                                     $lastMonth = $row["mescita"];
-                                    echo "<div class='col-12 divHeaderMes'>ENERO</div>";
+                                    echo "<div class='col-12 divHeaderMes' id='divEnero'>ENERO</div>";
                                 }
                                 break;
                     case '02':  
                                 if ($row["mescita"] != $lastMonth) {
                                     $lastMonth = $row["mescita"];
-                                    echo "<div class='col-12 divHeaderMes'>FEBRERO</div>";
+                                    echo "<div class='col-12 divHeaderMes' id='divFebrero'>FEBRERO</div>";
                                 }
                                 break;
                     case '03':  
                                 if ($row["mescita"] != $lastMonth) {
                                     $lastMonth = $row["mescita"];
-                                    echo "<div class='col-12 divHeaderMes'>MARZO</div>";
+                                    echo "<div class='col-12 divHeaderMes' id='divMarzo'>MARZO</div>";
                                 }
                                 break;
                     case '04':  
                                 if ($row["mescita"] != $lastMonth) {
                                     $lastMonth = $row["mescita"];
-                                    echo "<div class='col-12 divHeaderMes'>ABRIL</div>";
+                                    echo "<div class='col-12 divHeaderMes' id='divAbril'>ABRIL</div>";
                                 }
                                 break;
                     case '05':  
                                 if ($row["mescita"] != $lastMonth) {
                                     $lastMonth = $row["mescita"];
-                                    echo "<div class='col-12 divHeaderMes'>MAYO</div>";
+                                    echo "<div class='col-12 divHeaderMes' id='divMayo'>MAYO</div>";
                                 }
                                 break;
                     case '06':  
                                 if ($row["mescita"] != $lastMonth) {
                                     $lastMonth = $row["mescita"];
-                                    echo "<div class='col-12 divHeaderMes'>JUNIO</div>";
+                                    echo "<div class='col-12 divHeaderMes' id='divJunio'>JUNIO</div>";
                                 }
                                 break;
                     case '07':  
                                 if ($row["mescita"] != $lastMonth) {
                                     $lastMonth = $row["mescita"];
-                                    echo "<div class='col-12 divHeaderMes'>JULIO</div>";
+                                    echo "<div class='col-12 divHeaderMes' id='divJulio'>JULIO</div>";
                                 }
                                 break;
                     case '08':  
                                 if ($row["mescita"] != $lastMonth) {
                                     $lastMonth = $row["mescita"];
-                                    echo "<div class='col-12 divHeaderMes'>AGOSTO</div>";
+                                    echo "<div class='col-12 divHeaderMes' id='divAgosto'>AGOSTO</div>";
                                 }
                                 break;
                     case '09':  
                                 if ($row["mescita"] != $lastMonth) {
                                     $lastMonth = $row["mescita"];
-                                    echo "<div class='col-12 divHeaderMes'>SEPTIEMBRE</div>";
+                                    echo "<div class='col-12 divHeaderMes' id='divSeptiembre'>SEPTIEMBRE</div>";
                                 }
                                 break;
                     case '10':  
                                 if ($row["mescita"] != $lastMonth) {
                                     $lastMonth = $row["mescita"];
-                                    echo "<div class='col-12 divHeaderMes'>OCTUBRE</div>";
+                                    echo "<div class='col-12 divHeaderMes' id='divOctubre'>OCTUBRE</div>";
                                 }
                                 break;
                     case '11':  
                                 if ($row["mescita"] != $lastMonth) {
                                     $lastMonth = $row["mescita"];
-                                    echo "<div class='col-12 divHeaderMes'>NOVIEMBRE</div>";
+                                    echo "<div class='col-12 divHeaderMes' id='divNoviembre'>NOVIEMBRE</div>";
                                 }
                                 break;
                     case '12':  
                                 if ($row["mescita"] != $lastMonth) {
                                     $lastMonth = $row["mescita"];
-                                    echo "<div class='col-12 divHeaderMes'>DICIEMBRE</div>";
+                                    echo "<div class='col-12 divHeaderMes' id='divDiciembre'>DICIEMBRE</div>";
                                 }
                                 break;
                                 
