@@ -72,6 +72,7 @@ function limpiarCamposNuevaCita() {
     $("#divDatosCitaMedica").hide();
     $("#taNotasMedicas").val("");
     $("#lblRestan").text("$ 0");
+    $("#taDiagnostico").val("");
 }
 
 function limpiarCamposNuevoCliente() {
@@ -316,6 +317,7 @@ function agregarCita() {
     var notasMedicas = $("#taNotasMedicas").val();
     var estado = "ACTIVO";
     var fechaCaptura = obtenerFechaHoraActual('FULL');
+    var diagnostico = $("#taDiagnostico").val();
 
     $.ajax({url: "php/agregarCita.php", async: false, type: "POST", data: { idCliente: idCliente, tipoCita: tipoCita, idMascota: idMascota, diaCita: diaCita,
     mesCita: mesCita, anoCita: añoCita, totalCita: totalCita, anticipoCita: anticipoCita, restanCita: restanCita, corte: corte, bano: baño, notasEstetica: notasEstetica,
@@ -324,7 +326,7 @@ function agregarCita() {
     digestivoNotas: digestivoNotas, respiratorio: respiratorio, respiratorioNotas: respiratorioNotas, genitourinario: genitourinario, genitourinarioNotas: genitourinarioNotas,
     ojos: ojos, ojosNotas: ojosNotas, oidos: oidos, oidosNotas: oidosNotas, sistemaNervioso: sistemaNervioso, sistemaNerviosoNotas: sistemaNerviosoNotas,
     ganglios: ganglios, gangliosNotas: gangliosNotas, mucosas: mucosas, mucosasNotas: mucosasNotas, listaProblemas: listaProblemas, planesDiagnosticos: planesDiagnosticos,
-    planesTerapeuticos: planesTerapeuticos, instruccionesCliente: instruccionesCliente, notasMedicas: notasMedicas, estado: estado, fechaCaptura: fechaCaptura }, success: function(res) {
+    planesTerapeuticos: planesTerapeuticos, instruccionesCliente: instruccionesCliente, notasMedicas: notasMedicas, estado: estado, fechaCaptura: fechaCaptura,diagnostico: diagnostico }, success: function(res) {
         if (res == "OK") {
             alert("Se ha agregado la cita.");
             limpiarCamposNuevaCita();

@@ -74,6 +74,7 @@
             echo "<cm_notas>" . $row['cm_notas'] . "</cm_notas>\n";
             echo "<estado>" . $row['estado'] . "</estado>\n";
             echo "<fechacaptura>" . $row['fechacaptura'] . "</fechacaptura>\n";
+            echo "<cm_diagnostico>" . $row['cm_diagnostico'] . "</cm_diagnostico>\n";
         }
 
         echo "</resultado>\n";

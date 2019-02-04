@@ -48,6 +48,7 @@
         $notasMedicas = $_POST["notasMedicas"];
         $estado = $_POST["estado"];
         $fechaCaptura = $_POST["fechaCaptura"];
+        $diagnostico = $_POST["diagnostico"];
 
         $idTienda = $_COOKIE["v_idtienda"];
         $prefijo = $_COOKIE["v_prefijo"];
@@ -70,7 +71,7 @@
                 cm_circulatorionotas, cm_digestivo, cm_digestivonotas, cm_respiratorio, cm_respiratorionotas, cm_genitourinario, cm_genitourinarionotas,
                 cm_ojos, cm_ojosnotas, cm_oidos, cm_oidosnotas, cm_sistemanervioso, cm_sistemanerviosonotas, cm_ganglios, cm_gangliosnotas,
                 cm_mucosas, cm_mucosasnotas, cm_listaproblemas, cm_planesdiagnosticos, cm_planesterapeuticos, cm_instruccionescliente,
-                cm_notas, estado, fechacaptura, fechafinalizado, idusuariocaptura)
+                cm_notas, estado, fechacaptura, fechafinalizado, idusuariocaptura, cm_diagnostico)
                 VALUES
                 ($idCliente, '$tipoCita', $idMascota, '$diaCita', '$mesCita', '$anoCita', '$total', '$anticipo', '$restan',
                 '$corte', '$bano', '$notasEstetica',
@@ -79,7 +80,7 @@
                 '$circulatorioNotas', '$digestivo', '$digestivoNotas', '$respiratorio', '$respiratorioNotas', '$genitourinario', '$genitourinarioNotas',
                 '$ojos', '$ojosNotas', '$oidos', '$oidosNotas', '$sistemaNervioso', '$sistemaNerviosoNotas', '$ganglios', '$gangliosNotas',
                 '$mucosas', '$mucosasNotas', '$listaProblemas', '$planesDiagnosticos', '$planesTerapeuticos', '$instruccionesCliente',
-                '$notasMedicas', '$estado', '$fechaCaptura', '', $idUsuario)";
+                '$notasMedicas', '$estado', '$fechaCaptura', '', $idUsuario, '$diagnostico')";
 
         $con->query($sql);
 

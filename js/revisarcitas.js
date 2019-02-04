@@ -91,6 +91,7 @@ function obtenerDatosCita(idcita, tipocita) {
                 $("#taPlanesTerapeuticos").val($(this).find("cm_planesterapeuticos").text());
                 $("#tbInstruccionesCliente").val($(this).find("cm_instruccionescliente").text());
                 $("#taNotasMedicas").val($(this).find("cm_notas").text());
+                $("#taDiagnostico").val($(this).find("cm_diagnostico").text());
             });
         }});
     } else if (tipocita == "ESTETICA") {
@@ -152,6 +153,7 @@ function limpiarCamposCitaMedica() {
     $("#divDatosCitaMedica").hide();
     $("#taNotasMedicas").val("");
     $("#lblRestan").text("$ 0");
+    $("#taDiagnostico").val("");
 }
 
 function finalizarCita(idCita) {

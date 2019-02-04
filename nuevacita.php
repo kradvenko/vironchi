@@ -233,16 +233,22 @@
                 Cita Médica
             </div>
             <div class="col-2 divMargin">
+                Temperatura
+            </div>
+            <div class="col-4 divMargin">
+                <input type="text" id="tbTemperatura" class="form-control"></input>
+            </div>
+            <div class="col-2 divMargin">
                 Peso
             </div>
             <div class="col-4 divMargin">
                 <input type="text" id="tbPeso" class="form-control"></input>
             </div>
-            <div class="col-2 divMargin">
-                Temperatura
+            <div class="col-12 divMargin">
+                Diagnóstico
             </div>
-            <div class="col-4 divMargin">
-                <input type="text" id="tbTemperatura" class="form-control"></input>
+            <div class="col-12 divMargin">
+                <textarea id="taDiagnostico" maxlength="250" class="form-control"></textarea> 
             </div>
             <div class="col-2 divMargin">
                 Aparencia general
