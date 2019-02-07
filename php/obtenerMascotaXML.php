@@ -40,6 +40,7 @@
             echo "<fechacaptura>" . $row['fechacaptura'] . "</fechacaptura>\n";            
             echo "<caracteristicas>" . $row['caracteristicas'] . "</caracteristicas>\n";
             echo "<estado>" . $row['estado'] . "</estado>\n";
+            echo "<genero>" . $row['genero'] . "</genero>\n";
         }
 
         echo "</resultado>\n";

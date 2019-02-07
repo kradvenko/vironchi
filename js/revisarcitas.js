@@ -203,6 +203,7 @@ function cargarDatosMascota(idMascota) {
             $("#tbAñoMascota").val($(this).find("fechanacimiento").text().substr(6, 4));
             $("#tbEdadMascota").val($(this).find("edad").text());
             $("#taCaracteristicasMascota").val($(this).find("caracteristicas").text());
+            $("#selGeneroMascota").val($(this).find("genero").text());
         });
     }});
 }

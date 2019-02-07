@@ -13,6 +13,7 @@
         $fechaCaptura = $_POST["fechaCaptura"];
         $caracteristicas = $_POST["caracteristicas"];
         $estado = $_POST["estado"];
+        $genero = $_POST["genero"];
 
         $idTienda = $_COOKIE["v_idtienda"];
 
@@ -24,7 +25,7 @@
         $con = new mysqli($hn, $un, $pw, $db);
 
         $sql = "UPDATE mascotas
-                SET idespecie = $idEspecie, idraza = $idRaza, nombre = '$nombre', fechanacimiento = '$fechaNacimiento', edad = '$edad', caracteristicas = '$caracteristicas'
+                SET idespecie = $idEspecie, idraza = $idRaza, nombre = '$nombre', fechanacimiento = '$fechaNacimiento', edad = '$edad', caracteristicas = '$caracteristicas', genero = '$genero'
                 WHERE idmascota = $idMascota
                 ";
 

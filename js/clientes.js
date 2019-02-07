@@ -249,6 +249,7 @@ function editarMascota() {
                 $("#tbAñoMascotaModificar").val($(this).find("fechanacimiento").text().substr(6, 4));
                 $("#tbEdadMascotaModificar").val($(this).find("edad").text());
                 $("#taCaracteristicasMascotaModificar").val($(this).find("caracteristicas").text());
+                $("#selGeneroMascota").val($(this).find("genero").text());
             });
         }});
     } else {
@@ -271,9 +272,10 @@ function modificarMascota() {
     var caracteristicas = $("#taCaracteristicasMascotaModificar").val();
     var fechaCaptura = obtenerFechaHoraActual('FULL');
     var estado = "ACTIVO";
+    var genero = $("#selGeneroMascota").val();
 
     $.ajax({url: "php/modificarMascota.php", async: false, type: "POST", data: { idCliente: idCliente, idMascota: idMascota, idEspecie: idEspecie, idRaza: idRaza, nombre: nombre, fechaNacimiento: fechaNacimiento,
-     edad: edad, caracteristicas: caracteristicas, fechaCaptura: fechaCaptura, estado: estado }, success: function(res) {
+     edad: edad, caracteristicas: caracteristicas, fechaCaptura: fechaCaptura, estado: estado, genero: genero }, success: function(res) {
         if (res == "OK") {
             alert("Se ha modificado la mascota.");
             $('#modalModificarMascota').modal('hide');

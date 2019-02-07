@@ -163,9 +163,10 @@ function agregarNuevaMascota() {
     var caracteristicas = $("#taCaracteristicasMascota").val();
     var fechaCaptura = obtenerFechaHoraActual('FULL');
     var estado = "ACTIVO";
+    var genero = $("#selGeneroMascota").val();
 
     $.ajax({url: "php/agregarMascota.php", async: false, type: "POST", data: { idCliente: idCliente, idEspecie: idEspecie, idRaza: idRaza, nombre: nombre, fechaNacimiento: fechaNacimiento,
-     edad: edad, caracteristicas: caracteristicas, fechaCaptura: fechaCaptura, estado: estado }, success: function(res) {
+     edad: edad, caracteristicas: caracteristicas, fechaCaptura: fechaCaptura, estado: estado, genero: genero }, success: function(res) {
         if (res == "OK") {
             alert("Se ha ingresado la mascota.");
             $('#modalAgregarMascota').modal('hide');

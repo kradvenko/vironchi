@@ -12,6 +12,7 @@
         $fechaCaptura = $_POST["fechaCaptura"];
         $caracteristicas = $_POST["caracteristicas"];
         $estado = $_POST["estado"];
+        $genero = $_POST["genero"];
 
         $idTienda = $_COOKIE["v_idtienda"];
 
@@ -23,9 +24,9 @@
         $con = new mysqli($hn, $un, $pw, $db);
 
         $sql = "Insert Into mascotas
-                (idcliente, idespecie, idraza, idtienda, nombre, fechanacimiento, edad, fechacaptura, caracteristicas, estado)
+                (idcliente, idespecie, idraza, idtienda, nombre, fechanacimiento, edad, fechacaptura, caracteristicas, estado, genero)
                 Values
-                ($idCliente, $idEspecie, $idRaza, $idTienda, '$nombre', '$fechaNacimiento', '$edad', '$fechaCaptura', '$caracteristicas', '$estado')";
+                ($idCliente, $idEspecie, $idRaza, $idTienda, '$nombre', '$fechaNacimiento', '$edad', '$fechaCaptura', '$caracteristicas', '$estado', '$genero')";
 
         $con->query($sql);
 

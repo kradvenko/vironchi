@@ -606,6 +606,15 @@
                             <input type="text" class="form-control" id="tbEdadMascota" />
                         </div>
                         <div class="col-12">
+                            Género
+                        </div>
+                        <div class="col-12">
+                            <select id="selGeneroMascota" class="form-control">
+                                <option value="MACHO">Macho</option>
+                                <option value="HEMBRA">Hembra</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
                             Características especiales
                         </div>
                         <div class="col-12">
