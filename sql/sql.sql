@@ -184,3 +184,17 @@ CREATE TABLE `vir_detalleventa` (
   PRIMARY KEY (`iddetalleventa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--20/02/2019
+CREATE TABLE `vironchi`.`vir_costosextrascitas` (
+  `idcostoextra` INT NOT NULL AUTO_INCREMENT,
+  `idcita` INT NULL,
+  `idtipocostoextra` INT NULL,
+  `total` FLOAT NULL,
+  PRIMARY KEY (`idcostoextra`));
+
+CREATE TABLE `vironchi`.`tiposcostosextras` (
+  `idtipocostoextra` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(150) NULL,
+  `costo` FLOAT NULL,
+  `estado` VARCHAR(45) NULL,
+  PRIMARY KEY (`idtipocostoextra`));
