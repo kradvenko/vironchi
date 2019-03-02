@@ -230,6 +230,12 @@
                         <div class="col-4 divMargin">
                             <input type="text" id="tbTemperatura" class="form-control"></input>
                         </div>
+                        <div class="col-12 divMargin">
+                            Diagnóstico
+                        </div>
+                        <div class="col-12 divMargin">
+                            <textarea id="taDiagnostico" maxlength="250" class="form-control"></textarea> 
+                        </div>
                         <div class="col-2 divMargin">
                             Aparencia general
                         </div>
@@ -407,8 +413,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="actualizarCitaMedica()">Guardar cambios</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposCitaMedica()">Cerrar</button>
-                    <!--<button type="button" class="btn btn-primary" onclick="agregarNuevaEspecie()">Guardar cambios</button>-->
                 </div>
             </div>
         </div>
@@ -476,8 +482,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="actualizarCitaEstetica()">Guardar cambios</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposCitaMedica()">Cerrar</button>
-                    <!--<button type="button" class="btn btn-primary" onclick="agregarNuevaEspecie()">Guardar cambios</button>-->
                 </div>
             </div>
         </div>
@@ -666,7 +672,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposMascota()">Cerrar</button>
-                    <!--<button type="button" class="btn btn-primary" onclick="agregarNuevaMascota()">Guardar cambios</button>-->
                 </div>
             </div>
         </div>

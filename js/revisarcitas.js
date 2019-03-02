@@ -47,9 +47,11 @@ function detallesCita(idcita, tipocita) {
     if (tipocita == "MEDICA") {
         obtenerDatosCita(idcita, tipocita);
         $('#modalCitaMedica').modal('show');
+        rc_IdCitaElegida = idcita;
     } else if (tipocita == "ESTETICA") {
         obtenerDatosCita(idcita, tipocita);
         $('#modalCitaEstetica').modal('show');
+        rc_IdCitaElegida = idcita;
     }
 }
 
@@ -302,4 +304,74 @@ function agregarNuevoPago() {
             alert(res);
         }
     }});
+}
+
+function actualizarCitaMedica() {
+    if (rc_IdCitaElegida > 0) {
+        var peso = $("#tbPeso").val();
+        var temperatura = $("#tbTemperatura").val();
+        var aparienciaGeneral = $("#selAparienciaGeneral").val();
+        var aparienciaGeneralNotas = $("#tbAparienciaGeneral").val();
+        var piel = $("#selPiel").val();
+        var pielNotas = $("#tbPiel").val();
+        var musculosqueleto = $("#selMusculosqueleto").val();
+        var musculosqueletoNotas = $("#tbMusculosqueleto").val();
+        var circulatorio = $("#selCirculatorio").val();
+        var circulatorioNotas = $("#tbCirculatorio").val();
+        var digestivo = $("#selDigestivo").val();
+        var digestivoNotas = $("#tbDigestivo").val();
+        var respiratorio = $("#selRespiratorio").val();
+        var respiratorioNotas = $("#tbRespiratorio").val();
+        var genitourinario = $("#selGenitourinario").val();
+        var genitourinarioNotas = $("#tbGenitourinario").val();
+        var ojos = $("#selOjos").val();
+        var ojosNotas = $("#tbOjos").val();
+        var oidos = $("#selOidos").val();
+        var oidosNotas = $("#tbOidos").val();
+        var sistemaNervioso = $("#selSistemaNervioso").val();
+        var sistemaNerviosoNotas = $("#tbSistemaNervioso").val();
+        var ganglios = $("#selGanglios").val();
+        var gangliosNotas = $("#tbGanglios").val();
+        var mucosas = $("#selMucosas").val();
+        var mucosasNotas = $("#tbMucosas").val();
+        var listaProblemas = $("#taListaProblemas").val();
+        var planesDiagnosticos = $("#taPlanesDiagnosticos").val();
+        var planesTerapeuticos = $("#taPlanesTerapeuticos").val();
+        var instruccionesCliente = $("#tbInstruccionesCliente").val();
+        var notasMedicas = $("#taNotasMedicas").val();        
+        var diagnostico = $("#taDiagnostico").val();
+
+        $.ajax({url: "php/actualizarCitaMedica.php", async: false, type: "POST", data: { idCita: rc_IdCitaElegida, peso: peso, temperatura: temperatura, aparienciaGeneral: aparienciaGeneral, aparienciaGeneralNotas: aparienciaGeneralNotas, piel: piel, pielNotas: pielNotas,
+        musculosqueleto: musculosqueleto, musculosqueletoNotas: musculosqueletoNotas, circulatorio: circulatorio, circulatorioNotas: circulatorioNotas, digestivo: digestivo,
+        digestivoNotas: digestivoNotas, respiratorio: respiratorio, respiratorioNotas: respiratorioNotas, genitourinario: genitourinario, genitourinarioNotas: genitourinarioNotas,
+        ojos: ojos, ojosNotas: ojosNotas, oidos: oidos, oidosNotas: oidosNotas, sistemaNervioso: sistemaNervioso, sistemaNerviosoNotas: sistemaNerviosoNotas,
+        ganglios: ganglios, gangliosNotas: gangliosNotas, mucosas: mucosas, mucosasNotas: mucosasNotas, listaProblemas: listaProblemas, planesDiagnosticos: planesDiagnosticos,
+        planesTerapeuticos: planesTerapeuticos, instruccionesCliente: instruccionesCliente, notasMedicas: notasMedicas, diagnostico: diagnostico }, success: function(res) {
+            if (res == "OK") {
+                alert("Se ha actualizado la cita.");
+            } else {
+                alert(res);
+            }
+        }});
+    } else {
+        alert("Elija una cita.");
+    }
+}
+
+function actualizarCitaEstetica() {
+    if (rc_IdCitaElegida > 0) {
+        var corte = $("#selCorte").val();
+        var bano = $("#selBaño").val();
+        var notasEstetica = $("#taNotasEsteticas").val();
+
+        $.ajax({url: "php/actualizarCitaEstetica.php", async: false, type: "POST", data: { idCita: rc_IdCitaElegida, corte: corte, bano: bano, notasEstetica: notasEstetica }, success: function(res) {
+            if (res == "OK") {
+                alert("Se ha actualizado la cita.");
+            } else {
+                alert(res);
+            }
+        }});
+    } else {
+        alert("Elija una cita.");
+    }
 }
