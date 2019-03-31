@@ -8,12 +8,15 @@
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.min.css" />
     <link rel="stylesheet" type="text/css" href="css/veterinaria.css" />
+    <link rel="stylesheet" type="text/css" href="css/jsgrid.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/jsgrid-theme.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" />
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/veterinaria.js"></script>
     <script src="js/nuevacita.js"></script>
+    <script src="js/jsgrid.min.js"></script>
 
     <title>Veterinaria Vironchi - Nueva cita</title>
 
@@ -188,6 +191,24 @@
             </div>
             <div class="col-2">
                 <input type="text" class="form-control" id="tbAnticipo" onchange="verificarTotales()"></input>
+            </div>
+            <div class="col-2">
+                Total
+            </div>
+            <div class="col-2">
+                <label id="lblTotal">$</label>
+            </div>
+            <div class="col-2">
+                Costos Extra
+            </div>
+            <div class="col-2">
+                <label id="lblExtras">$</label>
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-secondary" data-toggle='modal' data-target='#modalVerCostosExtra' onclick="cargarCostosExtra()">Ver Costos Extra</button>
+            </div>
+            <div class="col-2">
+                
             </div>
             <div class="col-2">
                 Restan
@@ -689,11 +710,85 @@
             </div>
         </div>
     </div>
+    <!--Ventana modal para ver los costos extra-->
+    <div class="modal fade" id="modalVerCostosExtra" tabindex="-1" role="dialog" aria-labelledby="modalVerCostosExtra" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Costos Extra de la Cita</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">                        
+                        <div class="col-8 divMargin">
+                            Elija un costo extra
+                        </div>
+                        <div class="col-4 divMargin">
+                            <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarNuevoCostoExtra'>
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="col-4" id="divCostosExtra">
+
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control" id="tbCostoExtraCosto"></input>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="btn btn-primary" onclick="agregarCostoExtraACita()">Agregar a cita</button>
+                        </div>
+                        <div class="col-12" id="divCitaCostosExtra">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Ventana modal para agregar un nuevo costo extra-->
+    <div class="modal fade" id="modalAgregarNuevoCostoExtra" tabindex="-1" role="dialog" aria-labelledby="modalAgregarNuevoCostoExtra" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Costos Extra de la Cita</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">                        
+                        <div class="col-7 divMargin">
+                            Nombre del costo extra
+                        </div>
+                        <div class="col-5">
+                            <input type="text" class="form-control" id="tbNuevoCostoExtraNombre"></input>
+                        </div>
+                        <div class="col-7 divMargin">
+                            Costo
+                        </div>
+                        <div class="col-5">
+                            <input type="text" class="form-control" id="tbNuevoCostoExtraCosto"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarNuevoCostoExtra()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
     $(document).ready(function() {
         checkSession();
         limpiarCamposNuevaCita();
+        limpiarNuevoCostoExtra();
         $("#aCitas").addClass("currentPage");
         $("#tbCliente").autocomplete({
             source: "php/obtenerClientesJSON.php",
@@ -715,6 +810,9 @@
     });
     $('#modalAgregarRaza').on('shown.bs.modal', function() {
         $('#tbNuevaRaza').focus();
+    });
+    $('#modalVerCostosExtra').on('shown.bs.modal', function() {
+        mostrarCostosExtraCita();
     });
 </script>
 </html>

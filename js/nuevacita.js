@@ -1,6 +1,9 @@
 //Variables para el módulo de nueva cita
 var nc_IdClienteElegido = 0;
+var nc_Total = 0;
 var nc_Restan = 0;
+var nc_Extras = 0;
+var nc_CostosExtraCita = [];
 //Funciones para el módulo de nueva cita
 function mostrarInfoCita() {
     var tipoCita = $("#selTipoCita").val();
@@ -119,6 +122,7 @@ function elegirCliente(id) {
 
 function verificarTotales() {
     var total = $("#tbTotal").val();
+    var extras = 0;
     var anticipo = $("#tbAnticipo").val();
     if (isNaN(total)) {
         alert("No ha escrito un número válido para el total.");
@@ -130,13 +134,24 @@ function verificarTotales() {
         $("#tbAnticipo").val("0");
         return;
     }
+    if (nc_CostosExtraCita.length > 0) {
+        for (i = 0; i < nc_CostosExtraCita.length; i++) {
+            extras = parseFloat(extras) + parseFloat(nc_CostosExtraCita[i].Costo);
+        }
+    }
+    total = parseFloat(total) + parseFloat(extras);
     if (total < anticipo) {
         alert("El anticipo es mayor que el total de la cita.");
         $("#tbAnticipo").val("0");
         return;
     }
+    nc_Total = total;
+    nc_Extras = extras;
     nc_Restan = total - anticipo;
-    $("#lblRestan").text(nc_Restan);
+
+    $("#lblTotal").text("$ " + nc_Total);
+    $("#lblExtras").text("$ " + nc_Extras);
+    $("#lblRestan").text("$ " + nc_Restan);
 }
 
 function obtenerMascotasCliente() {
@@ -335,4 +350,85 @@ function agregarCita() {
             alert(res);
         }
     }});
+}
+//Funciones para los costos extra de la cita
+function agregarCostoExtraACita() {
+    var costoExtra = { id: $("#selCostosExtra").val(), Razon: $("#selCostosExtra").text(), Costo: $("#tbCostoExtraCosto").val() };
+    nc_CostosExtraCita[nc_CostosExtraCita.length] = costoExtra;
+    mostrarCostosExtraCita();
+    verificarTotales();
+}
+
+function mostrarCostosExtraCita() {
+    $("#divCitaCostosExtra").jsGrid({
+        width: "100%",
+        height: "100%",
+ 
+        inserting: false,
+        editing: false,
+        sorting: false,
+        paging: false,
+        deleting: false,
+ 
+        data: nc_CostosExtraCita,
+
+        deleteConfirm: "¿Desea borrar el costo extra?",
+
+        onItemDeleted: function (args) {
+            verificarTotales();
+        },
+
+        rowClick: function(args) {
+            //elegirArticulo(args.item.id, args.item.idMatriz);
+        },
+ 
+        fields: [
+            { name: "Razon", type: "text", width: 50, validate: "required" },
+            { name: "Costo", type: "text", width: 20, validate: "required" },
+            { type: "control" }
+        ]
+    });
+}
+
+function limpiarNuevoCostoExtra() {
+    $("#tbNuevoCostoExtraNombre").val('');
+    $("#tbNuevoCostoExtraCosto").val('');
+}
+
+function cargarCostosExtra() {
+    obtenerCostosExtra();
+}
+
+function obtenerCostosExtra() {
+    $.ajax({url: "php/obtenerCostosExtraSelect.php", async: false, type: "POST", data: { idSelect: "selCostosExtra" }, success: function(res) {
+        $("#divCostosExtra").html(res);
+        $("#tbCostoExtraCosto").val('');
+    }});
+}
+
+function agregarNuevoCostoExtra() {
+    var nuevoCostoExtraNombre = $("#tbNuevoCostoExtraNombre").val();
+    var nuevoCostoExtraCosto = $("#tbNuevoCostoExtraCosto").val();
+
+    if (nuevoCostoExtraNombre.length == 0) {
+        alert("No ha escrito el nombre del costo extra.");
+        return;
+    }
+
+    if (isNaN(nuevoCostoExtraCosto)) {
+        alert("No ha escrito el costo correcto.");
+        alert();
+    }
+
+    $.ajax({url: "php/agregarNuevoCostoExtra.php", async: false, type: "POST", data: { NuevoCostoExtraNombre: nuevoCostoExtraNombre, NuevoCostoExtraCosto: nuevoCostoExtraCosto }, success: function(res) {
+        if (res == "OK") {
+            obtenerCostosExtra();
+            limpiarNuevoCostoExtra();
+            $('#modalAgregarNuevoCostoExtra').modal('hide');
+        }
+    }});
+}
+
+function elegirCostoExtra(costo) {
+    $("#tbCostoExtraCosto").val(costo);
 }
