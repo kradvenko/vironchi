@@ -355,7 +355,7 @@ function agregarCita() {
 }
 //Funciones para los costos extra de la cita
 function agregarCostoExtraACita() {
-    var costoExtra = { id: $("#selCostosExtra").val(), Razon: $("#selCostosExtra").text(), Costo: $("#tbCostoExtraCosto").val() };
+    var costoExtra = { id: $("#selCostosExtra").val(), Razon: $("#selCostosExtra option:selected").text(), Costo: $("#tbCostoExtraCosto").val() };
     nc_CostosExtraCita[nc_CostosExtraCita.length] = costoExtra;
     mostrarCostosExtraCita();
     verificarTotales();

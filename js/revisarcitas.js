@@ -397,7 +397,7 @@ function actualizarCitaEstetica() {
 }
 //Funciones para los costos extra
 function agregarCostoExtraACita() {
-    var costoExtra = { id: $("#selCostosExtra").val(), Razon: $("#selCostosExtra").text(), Costo: $("#tbCostoExtraCosto").val() };
+    var costoExtra = { id: $("#selCostosExtra").val(), Razon: $("#selCostosExtra option:selected").text(), Costo: $("#tbCostoExtraCosto").val() };
     rc_CostosExtraCita[rc_CostosExtraCita.length] = costoExtra;
     mostrarCostosExtraCita();
     verificarTotales();

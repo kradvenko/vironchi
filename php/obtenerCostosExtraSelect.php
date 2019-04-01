@@ -21,7 +21,9 @@
 
         while ($row = $result->fetch_array()) {
             echo "<option value='" . $row["idcostoextra"] . "' data-costo='" . $row["costo"] . "' onclick='elegirCostoExtra(" . $row["costo"] . ")'>" . $row["razon"] . "</option>";
-        }
+        }        
+
+        echo "</select>";
         
         mysqli_close($con);
     }
