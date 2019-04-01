@@ -36,6 +36,7 @@
             echo "<mescita>" . $row['mescita'] . "</mescita>\n";
             echo "<anocita>" . $row['anocita'] . "</anocita>\n";
             echo "<total>" . $row['total'] . "</total>\n";
+            echo "<costoextra>" . $row['costoextra'] . "</costoextra>\n";
             echo "<anticipo>" . $row['anticipo'] . "</anticipo>\n";
             echo "<restan>" . $row['restan'] . "</restan>\n";
             echo "<ce_corte>" . $row['ce_corte'] . "</ce_corte>\n";

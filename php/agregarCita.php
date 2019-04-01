@@ -10,6 +10,7 @@
         $mesCita = $_POST["mesCita"];
         $anoCita = $_POST["anoCita"];
         $total = $_POST["totalCita"];
+        $extra = $_POST["extraCita"];
         $anticipo = $_POST["anticipoCita"];
         $restan = $_POST["restanCita"];
         $corte = $_POST["corte"];
@@ -54,6 +55,8 @@
         $prefijo = $_COOKIE["v_prefijo"];
         $idUsuario = $_COOKIE["v_idusuario"];
 
+        $costosExtra = (isset($_POST["costosExtra"]) ? $_POST["costosExtra"] : []);
+
         if (!$idCliente) {
             echo "Error. Faltan variables.";
             exit(1);
@@ -64,7 +67,7 @@
         $con = new mysqli($hn, $un, $pw, $db);
 
         $sql = "INSERT INTO $tabla
-                (idcliente, tipo, idmascota, diacita, mescita, anocita, total, anticipo, restan,
+                (idcliente, tipo, idmascota, diacita, mescita, anocita, total, costoextra, anticipo, restan,
                 ce_corte, ce_bano, ce_notas,
                 cm_peso, cm_temperatura, 
                 cm_aparienciageneral, cm_aparienciageneralnotas, cm_piel, cm_pielnotas, cm_muscoesqueleto, cm_muscoesqueletonotas, cm_circulatorio,
@@ -73,7 +76,7 @@
                 cm_mucosas, cm_mucosasnotas, cm_listaproblemas, cm_planesdiagnosticos, cm_planesterapeuticos, cm_instruccionescliente,
                 cm_notas, estado, fechacaptura, fechafinalizado, idusuariocaptura, cm_diagnostico)
                 VALUES
-                ($idCliente, '$tipoCita', $idMascota, '$diaCita', '$mesCita', '$anoCita', '$total', '$anticipo', '$restan',
+                ($idCliente, '$tipoCita', $idMascota, '$diaCita', '$mesCita', '$anoCita', '$total', '$extra', '$anticipo', '$restan',
                 '$corte', '$bano', '$notasEstetica',
                 '$peso', '$temperatura',
                 '$aparienciaGeneral', '$aparienciaGeneralNotas', '$piel', '$pielNotas', '$musculosqueleto', '$musculosqueletoNotas', '$circulatorio',
@@ -83,6 +86,19 @@
                 '$notasMedicas', '$estado', '$fechaCaptura', '', $idUsuario, '$diagnostico')";
 
         $con->query($sql);
+
+        $idCita = $con->insert_id;
+
+        if ($idCita > 0) {
+            $tabla = $prefijo . "extras";
+            for ($i = 0; $i < sizeof($costosExtra); $i++) {
+                $sql = "INSERT INTO $tabla
+                        (idcita, idcostoextra, costo)
+                        VALUES
+                        ($idCita, " . $costosExtra[$i]["id"] . ", " . $costosExtra[$i]["Costo"] . ")";
+                $con->query($sql);
+            }
+        }
 
         echo "OK";
 

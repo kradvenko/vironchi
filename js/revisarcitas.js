@@ -1,7 +1,12 @@
 //Variables para el módulo para revisar citas
 var rc_IdCitaElegida = 0;
+var rc_Total = 0;
 var rc_CitaResta = 0;
+var rc_Extras = 0;
+var rc_Anticipo = 0;
+var rc_TotalCita = 0; 
 var rc_TipoBusqueda;
+var rc_CostosExtraCita = [];
 //Funciones para el módulo para revisar citas
 function limpiarCamposRevisarCita() {
     $("#selDia").val(obtenerFechaHoraActual("DAY"));
@@ -59,9 +64,14 @@ function obtenerDatosCita(idcita, tipocita) {
     if (tipocita == 'MEDICA') {
         $.ajax({url: "php/obtenerDatosCitaXML.php", async: false, type: "POST", data: { idCita: idcita, tipoCita: tipocita }, success: function(res) {
             $('resultado', res).each(function(index, element) {
-                $("#tbTotal").val($(this).find("total").text());
+                $("#lblTotalMedica").text("$ " + $(this).find("total").text());
+                rc_Total = $(this).find("total").text();
+                $("#lblExtrasM").text("$ " + $(this).find("costoextra").text());
+                rc_Extras = $(this).find("costoextra").text();
                 $("#tbAnticipo").val($(this).find("anticipo").text());
+                rc_Anticipo = $(this).find("anticipo").text();
                 $("#lblRestan").text("$ " + $(this).find("restan").text());
+                rc_CitaResta = $(this).find("restan").text();
                 $("#tbPeso").val($(this).find("cm_peso").text());
                 $("#tbTemperatura").val($(this).find("cm_temperatura").text());
                 $("#selAparienciaGeneral").val($(this).find("cm_aparienciageneral").text());
@@ -94,17 +104,26 @@ function obtenerDatosCita(idcita, tipocita) {
                 $("#tbInstruccionesCliente").val($(this).find("cm_instruccionescliente").text());
                 $("#taNotasMedicas").val($(this).find("cm_notas").text());
                 $("#taDiagnostico").val($(this).find("cm_diagnostico").text());
+                total = parseFloat($(this).find("total").text()) + parseFloat($(this).find("costoextra").text());
+                $("#lblTotalCitaMedica").text("$ " + total);
             });
         }});
     } else if (tipocita == "ESTETICA") {
         $.ajax({url: "php/obtenerDatosCitaXML.php", async: false, type: "POST", data: { idCita: idcita, tipoCita: tipocita }, success: function(res) {
             $('resultado', res).each(function(index, element) {
-                $("#tbTotalEstetica").val($(this).find("total").text());
+                $("#lblTotalEstetica").text("$ " + $(this).find("total").text());
+                rc_Total = $(this).find("total").text();
+                $("#lblExtrasE").text("$ " + $(this).find("costoextra").text());
+                rc_Extras = $(this).find("costoextra").text();
                 $("#tbAnticipoEstetica").val($(this).find("anticipo").text());
+                rc_Anticipo = $(this).find("anticipo").text();
                 $("#lblRestanEstetica").text("$ " + $(this).find("restan").text());
+                rc_CitaResta = $(this).find("restan").text();
                 $("#selCorte").val($(this).find("ce_corte").text());
                 $("#selBaño").val($(this).find("ce_bano").text());
                 $("#taNotasEsteticas").val($(this).find("ce_notas").text());
+                total = parseFloat($(this).find("total").text()) + parseFloat($(this).find("costoextra").text());
+                $("#lblTotalCitaEstetica").text("$ " + total);
             });
         }});
     }
@@ -216,6 +235,7 @@ function verPagos(idCita) {
     $.ajax({url: "php/obtenerDatosCitaXML.php", async: false, type: "POST", data: { idCita: idCita, tipoCita: "%" }, success: function(res) {
         $('resultado', res).each(function(index, element) {
             $("#lblTotalPagos").text("$ " + $(this).find("total").text());
+            $("#lblExtrasPagos").text("$ " + $(this).find("costoextra").text());
             $("#lblAnticiposPagos").text("$ " + $(this).find("anticipo").text());
             $("#lblRestanPagos").text("$ " + $(this).find("restan").text());
             rc_CitaResta = $(this).find("restan").text();
@@ -373,5 +393,105 @@ function actualizarCitaEstetica() {
         }});
     } else {
         alert("Elija una cita.");
+    }
+}
+//Funciones para los costos extra
+function agregarCostoExtraACita() {
+    var costoExtra = { id: $("#selCostosExtra").val(), Razon: $("#selCostosExtra").text(), Costo: $("#tbCostoExtraCosto").val() };
+    rc_CostosExtraCita[rc_CostosExtraCita.length] = costoExtra;
+    mostrarCostosExtraCita();
+    verificarTotales();
+    actualizarCostosExtra();
+}
+
+function cargarCostosExtra() {
+    obtenerCostosExtra();
+}
+
+function obtenerCostosExtra() {
+    $.ajax({url: "php/obtenerCostosExtraSelect.php", async: false, type: "POST", data: { idSelect: "selCostosExtra" }, success: function(res) {
+        $("#divCostosExtra").html(res);
+        $("#tbCostoExtraCosto").val('');
+    }});
+}
+
+function obtenerCostosExtraCita() {
+    rc_CostosExtraCita = [];
+    if (rc_IdCitaElegida > 0) {
+        $.ajax({url: "php/obtenerCostosExtraCitaXML.php", async: false, type: "POST", data: { idCita: rc_IdCitaElegida }, success: function(res) {
+            $('c', res).each(function(index, element) {
+                var costoExtra;
+                costoExtra = { id: $(this).find("idcostoextra").text(), Razon: $(this).find("razon").text(), Costo: $(this).find("costo").text() };
+                rc_CostosExtraCita[rc_CostosExtraCita.length] = costoExtra;                
+            });
+        }});
+        mostrarCostosExtraCita();
+    }
+}
+
+function mostrarCostosExtraCita() {
+    $("#divCitaCostosExtra").jsGrid({
+        width: "100%",
+        height: "100%",
+ 
+        inserting: false,
+        editing: false,
+        sorting: false,
+        paging: false,
+        deleting: false,
+ 
+        data: rc_CostosExtraCita,
+
+        deleteConfirm: "¿Desea borrar el costo extra?",
+
+        onItemDeleted: function (args) {
+            verificarTotales();
+            actualizarCostosExtra();
+        },
+
+        rowClick: function(args) {
+            //elegirArticulo(args.item.id, args.item.idMatriz);
+        },
+ 
+        fields: [
+            { name: "Razon", type: "text", width: 50, validate: "required" },
+            { name: "Costo", type: "text", width: 20, validate: "required" },
+            { type: "control" }
+        ]
+    });
+}
+
+function elegirCostoExtra(costo) {
+    $("#tbCostoExtraCosto").val(costo);
+}
+
+function verificarTotales() {
+    var total = 0;
+    var extras = 0;
+
+    if (rc_CostosExtraCita.length > 0) {
+        for (i = 0; i < rc_CostosExtraCita.length; i++) {
+            extras = parseFloat(extras) + parseFloat(rc_CostosExtraCita[i].Costo);
+        }
+    }
+    total = parseFloat(rc_Total) + parseFloat(extras);
+    
+    rc_TotalCita = total;
+    rc_Extras = extras;
+    rc_CitaResta = total - rc_Anticipo;
+
+    $("#lblTotalCitaMedica").text("$ " + rc_TotalCita);
+    $("#lblTotalCitaEstetica").text("$ " + rc_TotalCita);
+    $("#lblExtrasM").text("$ " + rc_Extras);
+    $("#lblExtrasE").text("$ " + rc_Extras);
+    $("#lblRestan").text("$ " + rc_CitaResta);
+    $("#lblRestanEstetica").text("$ " + rc_CitaResta);
+}
+
+function actualizarCostosExtra() {
+    if (rc_IdCitaElegida > 0) {
+        $.ajax({url: "php/actualizarCostosExtraCita.php", async: false, type: "POST", data: { idCita: rc_IdCitaElegida, costosExtra: rc_CostosExtraCita, costoExtra: rc_Extras, restan: rc_CitaResta }, success: function(res) {
+            
+        }});
     }
 }

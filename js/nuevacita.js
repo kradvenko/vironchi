@@ -295,6 +295,7 @@ function agregarCita() {
     var mesCita = $("#selMes").val();
     var añoCita = $("#tbAño").val();
     var totalCita = $("#tbTotal").val();
+    var extraCita = nc_Extras;
     var anticipoCita = $("#tbAnticipo").val();
     var restanCita = nc_Restan;
     var corte = $("#selCorte").val();
@@ -336,13 +337,14 @@ function agregarCita() {
     var diagnostico = $("#taDiagnostico").val();
 
     $.ajax({url: "php/agregarCita.php", async: false, type: "POST", data: { idCliente: idCliente, tipoCita: tipoCita, idMascota: idMascota, diaCita: diaCita,
-    mesCita: mesCita, anoCita: añoCita, totalCita: totalCita, anticipoCita: anticipoCita, restanCita: restanCita, corte: corte, bano: baño, notasEstetica: notasEstetica,
+    mesCita: mesCita, anoCita: añoCita, totalCita: totalCita, extraCita: extraCita, anticipoCita: anticipoCita, restanCita: restanCita, corte: corte, bano: baño, notasEstetica: notasEstetica,
     peso: peso, temperatura: temperatura, aparienciaGeneral: aparienciaGeneral, aparienciaGeneralNotas: aparienciaGeneralNotas, piel: piel, pielNotas: pielNotas,
     musculosqueleto: musculosqueleto, musculosqueletoNotas: musculosqueletoNotas, circulatorio: circulatorio, circulatorioNotas: circulatorioNotas, digestivo: digestivo,
     digestivoNotas: digestivoNotas, respiratorio: respiratorio, respiratorioNotas: respiratorioNotas, genitourinario: genitourinario, genitourinarioNotas: genitourinarioNotas,
     ojos: ojos, ojosNotas: ojosNotas, oidos: oidos, oidosNotas: oidosNotas, sistemaNervioso: sistemaNervioso, sistemaNerviosoNotas: sistemaNerviosoNotas,
     ganglios: ganglios, gangliosNotas: gangliosNotas, mucosas: mucosas, mucosasNotas: mucosasNotas, listaProblemas: listaProblemas, planesDiagnosticos: planesDiagnosticos,
-    planesTerapeuticos: planesTerapeuticos, instruccionesCliente: instruccionesCliente, notasMedicas: notasMedicas, estado: estado, fechaCaptura: fechaCaptura,diagnostico: diagnostico }, success: function(res) {
+    planesTerapeuticos: planesTerapeuticos, instruccionesCliente: instruccionesCliente, notasMedicas: notasMedicas, estado: estado, fechaCaptura: fechaCaptura,diagnostico: diagnostico,
+    costosExtra: nc_CostosExtraCita }, success: function(res) {
         if (res == "OK") {
             alert("Se ha agregado la cita.");
             limpiarCamposNuevaCita();
