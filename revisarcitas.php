@@ -176,7 +176,7 @@
                 Citas
             </div>
         </div>
-        <button onclick="topFunction()" id="btnTop" title="Go to top">Top</button> 
+        <button onclick="topFunction()" id="btnTop" title="Ir arriba">Arriba</button> 
         <div class="row divMargin" id="divCitas">
             
         </div>
