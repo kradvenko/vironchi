@@ -29,6 +29,54 @@
                 ?>
             </div>
         </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">
+                            Citas no pagadas por más de 15 días
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-block">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-12" id="divConteoSinPago">
+
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="button" class="btn btn-secondary" onclick="obtenerCitasPendientes()">Ver Citas</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>        
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">
+                            Citas sin pagos en los últimos 3 días
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-block">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-12" id="divSinPagoReciente">
+
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="button" class="btn btn-secondary" onclick="obtenerCitasSinPagoReciente()">Ver Citas</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row divMargin" id="divCitasPendientes">
             
         </div>        
@@ -753,7 +801,9 @@
     $(document).ready(function() {
         checkSession();
         $("#aMenu").addClass("currentPage");
-        obtenerCitasPendientes();
+        //obtenerCitasPendientes();
+        obtenerConteoCitas();
+        obtenerConteoCitasSinPagoReciente();
     });
     $('#modalNuevoPago').on('shown.bs.modal', function() {
         $('#tbCantidadPago').focus();

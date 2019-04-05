@@ -5,19 +5,38 @@
 
         $prefijo = $_COOKIE["v_prefijo"];
         $tabla = $prefijo . "citas";
+        $tablaPagos = $prefijo . "pagos";
 
         $con = new mysqli($hn, $un, $pw, $db);
 
-        $sql = "Select $tabla.*, clientes.nombre As cliente, mascotas.nombre As mascota
-                From $tabla
-                Inner Join clientes
-                On clientes.idcliente = $tabla.idcliente
-                Inner Join mascotas
-                On mascotas.idmascota = $tabla.idmascota
-                WHERE  restan > 0
+        $sql = "SELECT $tabla.*, clientes.nombre As cliente, mascotas.nombre As mascota
+                FROM $tabla
+                INNER JOIN clientes
+                ON clientes.idcliente = $tabla.idcliente
+                INNER JOIN mascotas
+                ON mascotas.idmascota = $tabla.idmascota
+                WHERE $tabla.restan > 0
                 AND $tabla.estado != 'FINALIZADO'
-                AND ( DATE_SUB(curdate(), INTERVAL 15 DAY) > str_to_date(CONCAT($tabla.mescita, '/', $tabla.diacita, '/', $tabla.anocita), '%m/%d/%Y') )
-                ORDER BY str_to_date(CONCAT($tabla.mescita, '/', $tabla.diacita, '/', $tabla.anocita), '%m/%d/%Y')";
+                AND $tabla.idcita IN
+                (
+                    SELECT DISTINCT $tablaPagos.idcita
+                    FROM $tablaPagos
+                    INNER JOIN $tabla
+                    ON $tabla.idcita = $tablaPagos.idcita
+                    WHERE $tabla.restan > 0
+                    AND $tabla.estado != 'FINALIZADO'
+                    AND $tablaPagos.idcita NOT IN
+                    (
+                        SELECT $tablaPagos.idcita
+                        FROM $tablaPagos
+                        INNER JOIN $tabla
+                        ON $tabla.idcita = $tablaPagos.idcita
+                        WHERE ( DATE_SUB(curdate(), INTERVAL 3 DAY) <= str_to_date($tablaPagos.fechapago, '%d/%m/%Y') )
+                        AND  $tabla.restan > 0
+                        AND $tabla.estado != 'FINALIZADO'
+                    )
+                )
+                ";
 
         $result = $con->query($sql);
 
@@ -62,7 +81,7 @@
         $lastMonth = "0";
         $showCounter = "";
         $count = 0;
-        
+
         while ($row = $result->fetch_array()) {
             $count++;
             switch ($row["mescita"]) {

@@ -1,9 +1,35 @@
+//
+var m_Pendientes = false;
+var m_Recientes = false;
 //Funciones para el menú
 function obtenerCitasPendientes() {
     $.ajax({url: "php/obtenerCitasPendientesPago.php", async: false, type: "POST", success: function(res) {
         $("#divCitasPendientes").html(res);
+        m_Pendientes = true;
+        m_Recientes = false;
     }});
 }
+
+function obtenerCitasSinPagoReciente() {
+    $.ajax({url: "php/obtenerCitasSinPagoReciente.php", async: false, type: "POST", success: function(res) {
+        $("#divCitasPendientes").html(res);
+        m_Pendientes = false;
+        m_Recientes = true;
+    }});
+}
+
+function obtenerConteoCitas() {
+    $.ajax({url: "php/obtenerCitasPendientesPagoConteo.php", async: false, type: "POST", success: function(res) {
+        $("#divConteoSinPago").html(res);
+    }});
+}
+
+function obtenerConteoCitasSinPagoReciente() {
+    $.ajax({url: "php/obtenerCitasSinPagoRecienteConteo.php", async: false, type: "POST", success: function(res) {
+        $("#divSinPagoReciente").html(res);
+    }});
+}
+
 
 //COPIA DE revisarcitas.js//
 //Variables para el módulo para revisar citas
@@ -291,7 +317,15 @@ function agregarNuevoPago() {
                     $("#lblAnticiposPagos").text("$ " + $(this).find("anticipo").text());
                     $("#lblRestanPagos").text("$ " + $(this).find("restan").text());
                     rc_CitaResta = $(this).find("restan").text();
-                    obtenerCitasPendientes();
+                    if (m_Pendientes) {
+                        obtenerConteoCitas();
+                        obtenerConteoCitasSinPagoReciente();
+                        obtenerCitasPendientes();
+                    } else if (m_Recientes) {
+                        obtenerConteoCitas();
+                        obtenerConteoCitasSinPagoReciente();
+                        obtenerCitasSinPagoReciente();
+                    }
                 });
             }});
             $.ajax({url: "php/obtenerPagos.php", async: false, type: "POST", data: { idCita: rc_IdCitaElegida }, success: function(res) {
