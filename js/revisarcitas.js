@@ -76,7 +76,8 @@ function obtenerDatosCita(idcita, tipocita) {
                 $("#tbTemperatura").val($(this).find("cm_temperatura").text());
                 $("#selAparienciaGeneral").val($(this).find("cm_aparienciageneral").text());
                 $("#tbAparienciaGeneral").val($(this).find("cm_aparienciageneralnotas").text());
-                $("#selPiel").val($(this).find("cm_piel").text());
+
+                $("#selPiel").val($(this).find("cm_piel").text());                
                 $("#tbPiel").val($(this).find("cm_pielnotas").text());
                 $("#selMusculosqueleto").val($(this).find("cm_muscoesqueleto").text());
                 $("#tbMusculosqueleto").val($(this).find("cm_muscoesqueletonotas").text());
@@ -106,6 +107,22 @@ function obtenerDatosCita(idcita, tipocita) {
                 $("#taDiagnostico").val($(this).find("cm_diagnostico").text());
                 total = parseFloat($(this).find("total").text()) + parseFloat($(this).find("costoextra").text());
                 $("#lblTotalCitaMedica").text("$ " + total);
+
+                $("select").each(function( index ) {
+                    if ($(this).val() == 'ANORMAL') {
+                        $(this).css("background-color", "#FE0000");
+                        $(this).css("color", "#FFFFFF");
+                    }
+                    $(this).change(function() {
+                        if ($(this).val() == 'ANORMAL') {
+                            $(this).css("background-color", "#FE0000");
+                            $(this).css("color", "#FFFFFF");
+                        } else {
+                            $(this).css("background-color", "#FFFFFF");
+                            $(this).css("color", "#000000");
+                        }
+                    });
+                });
             });
         }});
     } else if (tipocita == "ESTETICA") {
