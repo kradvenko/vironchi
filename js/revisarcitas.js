@@ -1,5 +1,6 @@
 //Variables para el módulo para revisar citas
 var rc_IdCitaElegida = 0;
+var rc_IdCitaElegidaSeguimiento = 0;
 var rc_Total = 0;
 var rc_CitaResta = 0;
 var rc_Extras = 0;
@@ -116,6 +117,9 @@ function obtenerDatosCita(idcita, tipocita) {
                     if ($(this).val() == 'ANORMAL') {
                         $(this).css("background-color", "#FE0000");
                         $(this).css("color", "#FFFFFF");
+                    } else {
+                        $(this).css("background-color", "#FFFFFF");
+                        $(this).css("color", "#000000");
                     }
                     $(this).change(function() {
                         if ($(this).val() == 'ANORMAL') {
@@ -353,6 +357,10 @@ function agregarNuevoPago() {
 
 function actualizarCitaMedica() {
     if (rc_IdCitaElegida > 0) {
+        var IdCita = rc_IdCitaElegida;
+        if (rc_IdCitaElegidaSeguimiento > 0) {
+            IdCita = rc_IdCitaElegidaSeguimiento;
+        }
         var peso = $("#tbPeso").val();
         var temperatura = $("#tbTemperatura").val();
         var aparienciaGeneral = $("#selAparienciaGeneral").val();
@@ -386,7 +394,7 @@ function actualizarCitaMedica() {
         var notasMedicas = $("#taNotasMedicas").val();        
         var diagnostico = $("#taDiagnostico").val();
 
-        $.ajax({url: "php/actualizarCitaMedica.php", async: false, type: "POST", data: { idCita: rc_IdCitaElegida, peso: peso, temperatura: temperatura, aparienciaGeneral: aparienciaGeneral, aparienciaGeneralNotas: aparienciaGeneralNotas, piel: piel, pielNotas: pielNotas,
+        $.ajax({url: "php/actualizarCitaMedica.php", async: false, type: "POST", data: { idCita: IdCita, peso: peso, temperatura: temperatura, aparienciaGeneral: aparienciaGeneral, aparienciaGeneralNotas: aparienciaGeneralNotas, piel: piel, pielNotas: pielNotas,
         musculosqueleto: musculosqueleto, musculosqueletoNotas: musculosqueletoNotas, circulatorio: circulatorio, circulatorioNotas: circulatorioNotas, digestivo: digestivo,
         digestivoNotas: digestivoNotas, respiratorio: respiratorio, respiratorioNotas: respiratorioNotas, genitourinario: genitourinario, genitourinarioNotas: genitourinarioNotas,
         ojos: ojos, ojosNotas: ojosNotas, oidos: oidos, oidosNotas: oidosNotas, sistemaNervioso: sistemaNervioso, sistemaNerviosoNotas: sistemaNerviosoNotas,
@@ -601,6 +609,11 @@ function agregarCitaSeguimiento() {
 }
 
 function obtenerDatosSeguimiento(idCita) {
+    if(rc_IdCitaElegida == idCita) {
+        rc_IdCitaElegidaSeguimiento = 0;
+    } else {
+        rc_IdCitaElegidaSeguimiento = idCita;
+    }    
     $.ajax({url: "php/obtenerDatosCitaXML.php", async: false, type: "POST", data: { idCita: idCita, tipoCita: "MEDICA" }, success: function(res) {
         $('resultado', res).each(function(index, element) {
             $("#divSeguimientoHeader").html($(this).find("fechacaptura").text());
