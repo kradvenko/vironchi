@@ -7,6 +7,7 @@ var rc_Anticipo = 0;
 var rc_TotalCita = 0; 
 var rc_TipoBusqueda;
 var rc_CostosExtraCita = [];
+var rc_IdClienteElegido = 0;
 //Funciones para el módulo para revisar citas
 function limpiarCamposRevisarCita() {
     $("#selDia").val(obtenerFechaHoraActual("DAY"));
@@ -64,6 +65,9 @@ function obtenerDatosCita(idcita, tipocita) {
     if (tipocita == 'MEDICA') {
         $.ajax({url: "php/obtenerDatosCitaXML.php", async: false, type: "POST", data: { idCita: idcita, tipoCita: tipocita }, success: function(res) {
             $('resultado', res).each(function(index, element) {
+                $("#divSeguimientoHeader").html($(this).find("fechacaptura").text());
+                rc_IdClienteElegido = $(this).find("idcliente").text();
+                rc_IdMascota = $(this).find("idmascota").text();
                 $("#lblTotalMedica").text("$ " + $(this).find("total").text());
                 rc_Total = $(this).find("total").text();
                 $("#lblExtrasM").text("$ " + $(this).find("costoextra").text());
@@ -71,7 +75,7 @@ function obtenerDatosCita(idcita, tipocita) {
                 $("#tbAnticipo").val($(this).find("anticipo").text());
                 rc_Anticipo = $(this).find("anticipo").text();
                 $("#lblRestan").text("$ " + $(this).find("restan").text());
-                rc_CitaResta = $(this).find("restan").text();
+                rc_CitaResta = $(this).find("restan").text();                
                 $("#tbPeso").val($(this).find("cm_peso").text());
                 $("#tbTemperatura").val($(this).find("cm_temperatura").text());
                 $("#selAparienciaGeneral").val($(this).find("cm_aparienciageneral").text());
@@ -123,6 +127,10 @@ function obtenerDatosCita(idcita, tipocita) {
                         }
                     });
                 });
+
+                $.ajax({url: "php/obtenerSeguimientoCita.php", async: false, type: "POST", data: { idCita: idcita }, success: function(res) {
+                    $("#divSeguimiento").html(res);
+                }});
             });
         }});
     } else if (tipocita == "ESTETICA") {
@@ -511,4 +519,142 @@ function actualizarCostosExtra() {
             
         }});
     }
+}
+
+function agregarCitaSeguimiento() {
+    
+    if (rc_IdClienteElegido == 0) {
+        alert("No ha elegido un cliente para la cita.");
+        return;
+    }
+    var idCliente = rc_IdClienteElegido;
+    var idMascota = rc_IdMascota;
+    if (idMascota == null) {
+        alert("No ha elegido una mascota para la cita.");
+        return;
+    }
+    var idCita = rc_IdCitaElegida;
+    var tipoCita = "MEDICA";
+    var diaCita = "";
+    var mesCita = "";
+    var añoCita = "";
+    var totalCita = "0";
+    var extraCita = "0";
+    var anticipoCita = "0";
+    var restanCita = "0";
+    var corte = "0";
+    var baño = "";
+    var notasEstetica = "";
+    var peso = $("#tbPeso").val();
+    var temperatura = $("#tbTemperatura").val();
+    var aparienciaGeneral = $("#selAparienciaGeneral").val();
+    var aparienciaGeneralNotas = $("#tbAparienciaGeneral").val();
+    var piel = $("#selPiel").val();
+    var pielNotas = $("#tbPiel").val();
+    var musculosqueleto = $("#selMusculosqueleto").val();
+    var musculosqueletoNotas = $("#tbMusculosqueleto").val();
+    var circulatorio = $("#selCirculatorio").val();
+    var circulatorioNotas = $("#tbCirculatorio").val();
+    var digestivo = $("#selDigestivo").val();
+    var digestivoNotas = $("#tbDigestivo").val();
+    var respiratorio = $("#selRespiratorio").val();
+    var respiratorioNotas = $("#tbRespiratorio").val();
+    var genitourinario = $("#selGenitourinario").val();
+    var genitourinarioNotas = $("#tbGenitourinario").val();
+    var ojos = $("#selOjos").val();
+    var ojosNotas = $("#tbOjos").val();
+    var oidos = $("#selOidos").val();
+    var oidosNotas = $("#tbOidos").val();
+    var sistemaNervioso = $("#selSistemaNervioso").val();
+    var sistemaNerviosoNotas = $("#tbSistemaNervioso").val();
+    var ganglios = $("#selGanglios").val();
+    var gangliosNotas = $("#tbGanglios").val();
+    var mucosas = $("#selMucosas").val();
+    var mucosasNotas = $("#tbMucosas").val();
+    var listaProblemas = $("#taListaProblemas").val();
+    var planesDiagnosticos = $("#taPlanesDiagnosticos").val();
+    var planesTerapeuticos = $("#taPlanesTerapeuticos").val();
+    var instruccionesCliente = $("#tbInstruccionesCliente").val();
+    var notasMedicas = $("#taNotasMedicas").val();
+    var estado = "ACTIVO";
+    var fechaCaptura = obtenerFechaHoraActual('FULL');
+    var diagnostico = $("#taDiagnostico").val();
+
+    $.ajax({url: "php/agregarCitaSeguimiento.php", async: false, type: "POST", data: { idCita: idCita, idCliente: idCliente, tipoCita: tipoCita, idMascota: idMascota, diaCita: diaCita,
+    mesCita: mesCita, anoCita: añoCita, totalCita: totalCita, extraCita: extraCita, anticipoCita: anticipoCita, restanCita: restanCita, corte: corte, bano: baño, notasEstetica: notasEstetica,
+    peso: peso, temperatura: temperatura, aparienciaGeneral: aparienciaGeneral, aparienciaGeneralNotas: aparienciaGeneralNotas, piel: piel, pielNotas: pielNotas,
+    musculosqueleto: musculosqueleto, musculosqueletoNotas: musculosqueletoNotas, circulatorio: circulatorio, circulatorioNotas: circulatorioNotas, digestivo: digestivo,
+    digestivoNotas: digestivoNotas, respiratorio: respiratorio, respiratorioNotas: respiratorioNotas, genitourinario: genitourinario, genitourinarioNotas: genitourinarioNotas,
+    ojos: ojos, ojosNotas: ojosNotas, oidos: oidos, oidosNotas: oidosNotas, sistemaNervioso: sistemaNervioso, sistemaNerviosoNotas: sistemaNerviosoNotas,
+    ganglios: ganglios, gangliosNotas: gangliosNotas, mucosas: mucosas, mucosasNotas: mucosasNotas, listaProblemas: listaProblemas, planesDiagnosticos: planesDiagnosticos,
+    planesTerapeuticos: planesTerapeuticos, instruccionesCliente: instruccionesCliente, notasMedicas: notasMedicas, estado: estado, fechaCaptura: fechaCaptura,diagnostico: diagnostico }, success: function(res) {
+        if (res == "OK") {
+            alert("Se ha guardado el seguimiento.");
+            //limpiarCamposNuevaCita();
+            $.ajax({url: "php/obtenerSeguimientoCita.php", async: false, type: "POST", data: { idCita: idCita }, success: function(res) {
+                $("#divSeguimiento").html(res);
+            }});
+        } else {
+            alert(res);
+        }
+    }});
+}
+
+function obtenerDatosSeguimiento(idCita) {
+    $.ajax({url: "php/obtenerDatosCitaXML.php", async: false, type: "POST", data: { idCita: idCita, tipoCita: "MEDICA" }, success: function(res) {
+        $('resultado', res).each(function(index, element) {
+            $("#divSeguimientoHeader").html($(this).find("fechacaptura").text());
+            $("#tbPeso").val($(this).find("cm_peso").text());
+            $("#tbTemperatura").val($(this).find("cm_temperatura").text());
+            $("#selAparienciaGeneral").val($(this).find("cm_aparienciageneral").text());
+            $("#tbAparienciaGeneral").val($(this).find("cm_aparienciageneralnotas").text());
+
+            $("#selPiel").val($(this).find("cm_piel").text());                
+            $("#tbPiel").val($(this).find("cm_pielnotas").text());
+            $("#selMusculosqueleto").val($(this).find("cm_muscoesqueleto").text());
+            $("#tbMusculosqueleto").val($(this).find("cm_muscoesqueletonotas").text());
+            $("#selCirculatorio").val($(this).find("cm_circulatorio").text());
+            $("#tbCirculatorio").val($(this).find("cm_circulatorionotas").text());
+            $("#selDigestivo").val($(this).find("cm_digestivo").text());
+            $("#tbDigestivo").val($(this).find("cm_digestivonotas").text());
+            $("#selRespiratorio").val($(this).find("cm_respiratorio").text());
+            $("#tbRespiratorio").val($(this).find("cm_respiratorionotas").text());
+            $("#selGenitourinario").val($(this).find("cm_genitourinario").text());
+            $("#tbGenitourinario").val($(this).find("cm_genitourinarionotas").text());
+            $("#selOjos").val($(this).find("cm_ojos").text());
+            $("#tbOjos").val($(this).find("cm_ojosnotas").text());
+            $("#selOidos").val($(this).find("cm_oidos").text());
+            $("#tbOidos").val($(this).find("cm_oidosnotas").text());
+            $("#selSistemaNervioso").val($(this).find("cm_sistemanervioso").text());
+            $("#tbSistemaNervioso").val($(this).find("cm_sistemanerviosonotas").text());
+            $("#selGanglios").val($(this).find("cm_ganglios").text());
+            $("#tbGanglios").val($(this).find("cm_gangliosnotas").text());
+            $("#selMucosas").val($(this).find("cm_mucosas").text());
+            $("#tbMucosas").val($(this).find("cm_mucosasnotas").text());
+            $("#taListaProblemas").val($(this).find("cm_listaproblemas").text());
+            $("#taPlanesDiagnosticos").val($(this).find("cm_planesdiagnosticos").text());
+            $("#taPlanesTerapeuticos").val($(this).find("cm_planesterapeuticos").text());
+            $("#tbInstruccionesCliente").val($(this).find("cm_instruccionescliente").text());
+            $("#taNotasMedicas").val($(this).find("cm_notas").text());
+            $("#taDiagnostico").val($(this).find("cm_diagnostico").text());
+        });
+    }});
+    $("select").each(function( index ) {
+        if ($(this).val() == 'ANORMAL') {
+            $(this).css("background-color", "#FE0000");
+            $(this).css("color", "#FFFFFF");
+        } else {
+            $(this).css("background-color", "#FFFFFF");
+            $(this).css("color", "#000000");
+        }
+        $(this).change(function() {
+            if ($(this).val() == 'ANORMAL') {
+                $(this).css("background-color", "#FE0000");
+                $(this).css("color", "#FFFFFF");
+            } else {
+                $(this).css("background-color", "#FFFFFF");
+                $(this).css("color", "#000000");
+            }
+        });
+    });
 }

@@ -27,6 +27,15 @@
 	    echo "<resultado>\n";
 
         while ($row = $result->fetch_array()) {
+
+            $fecha = substr($row["fechacaptura"], 0, 10);
+            $f = substr($row["fechacaptura"], 13);
+
+            $hora = date('h:i:s a', strtotime($f));
+
+            $fechacaptura = $fecha . " " . $hora;
+
+
             echo "<respuesta>OK</respuesta>\n";
             echo "<idcita>" . $row['idcita'] . "</idcita>\n";
             echo "<idcliente>" . $row['idcliente'] . "</idcliente>\n";
@@ -74,7 +83,7 @@
             echo "<cm_instruccionescliente>" . $row['cm_instruccionescliente'] . "</cm_instruccionescliente>\n";
             echo "<cm_notas>" . $row['cm_notas'] . "</cm_notas>\n";
             echo "<estado>" . $row['estado'] . "</estado>\n";
-            echo "<fechacaptura>" . $row['fechacaptura'] . "</fechacaptura>\n";
+            echo "<fechacaptura>" . $fechacaptura . "</fechacaptura>\n";
             echo "<cm_diagnostico>" . $row['cm_diagnostico'] . "</cm_diagnostico>\n";
         }
 

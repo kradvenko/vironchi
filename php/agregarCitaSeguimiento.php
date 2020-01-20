@@ -3,6 +3,7 @@
     {
         require_once('connection.php');
 
+        $idCita = $_POST["idCita"];
         $idCliente = $_POST["idCliente"];
         $idMascota = $_POST["idMascota"];
         $tipoCita = $_POST["tipoCita"];
@@ -55,8 +56,6 @@
         $prefijo = $_COOKIE["v_prefijo"];
         $idUsuario = $_COOKIE["v_idusuario"];
 
-        $costosExtra = (isset($_POST["costosExtra"]) ? $_POST["costosExtra"] : []);
-
         if (!$idCliente) {
             echo "Error. Faltan variables.";
             exit(1);
@@ -74,7 +73,7 @@
                 cm_circulatorionotas, cm_digestivo, cm_digestivonotas, cm_respiratorio, cm_respiratorionotas, cm_genitourinario, cm_genitourinarionotas,
                 cm_ojos, cm_ojosnotas, cm_oidos, cm_oidosnotas, cm_sistemanervioso, cm_sistemanerviosonotas, cm_ganglios, cm_gangliosnotas,
                 cm_mucosas, cm_mucosasnotas, cm_listaproblemas, cm_planesdiagnosticos, cm_planesterapeuticos, cm_instruccionescliente,
-                cm_notas, estado, fechacaptura, fechafinalizado, idusuariocaptura, cm_diagnostico)
+                cm_notas, estado, fechacaptura, fechafinalizado, idusuariocaptura, cm_diagnostico, idcitapadre)
                 VALUES
                 ($idCliente, '$tipoCita', $idMascota, '$diaCita', '$mesCita', '$anoCita', '$total', '$extra', '$anticipo', '$restan',
                 '$corte', '$bano', '$notasEstetica',
@@ -83,26 +82,11 @@
                 '$circulatorioNotas', '$digestivo', '$digestivoNotas', '$respiratorio', '$respiratorioNotas', '$genitourinario', '$genitourinarioNotas',
                 '$ojos', '$ojosNotas', '$oidos', '$oidosNotas', '$sistemaNervioso', '$sistemaNerviosoNotas', '$ganglios', '$gangliosNotas',
                 '$mucosas', '$mucosasNotas', '$listaProblemas', '$planesDiagnosticos', '$planesTerapeuticos', '$instruccionesCliente',
-                '$notasMedicas', '$estado', '$fechaCaptura', '', $idUsuario, '$diagnostico')";
+                '$notasMedicas', '$estado', '$fechaCaptura', '', $idUsuario, '$diagnostico', $idCita)";
 
         $con->query($sql);
 
         $idCita = $con->insert_id;
-
-        if ($idCita > 0) {
-
-            $sql = "UPDATE $tabla SET idcitapadre = $idCita";
-            $con->query($sql);
-
-            $tabla = $prefijo . "extras";
-            for ($i = 0; $i < sizeof($costosExtra); $i++) {
-                $sql = "INSERT INTO $tabla
-                        (idcita, idcostoextra, costo)
-                        VALUES
-                        ($idCita, " . $costosExtra[$i]["id"] . ", " . $costosExtra[$i]["Costo"] . ")";
-                $con->query($sql);
-            }
-        }
 
         echo "OK";
 

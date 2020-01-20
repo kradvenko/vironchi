@@ -255,6 +255,15 @@
                         <div class="col-12 divMargin">
                             <textarea id="taDiagnostico" maxlength="250" class="form-control"></textarea> 
                         </div>
+                        <div class="col-12 divMargin">
+                            Seguimiento
+                        </div>
+                        <div class="col-12 divMargin" id="divSeguimiento">
+                            
+                        </div>
+                        <div class="col-12 divMargin" id="divSeguimientoHeader" style="background-color: #FFFFCC;">
+                            
+                        </div>
                         <div class="col-2 divMargin">
                             Aparencia general
                         </div>
@@ -432,7 +441,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="actualizarCitaMedica()">Guardar cambios</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarCitaSeguimiento()">Guardar seguimiento</button>
+                    <button type="button" class="btn btn-primary" onclick="actualizarCitaMedica()">Actualizar cambios</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposCitaMedica()">Cerrar</button>
                 </div>
             </div>
