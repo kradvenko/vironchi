@@ -39,7 +39,9 @@
                 </div>
             </div>
             <div class="col-4">
-                
+                <?php 
+                    echo phpversion();
+                ?>
             </div>
         </div>
     </div>

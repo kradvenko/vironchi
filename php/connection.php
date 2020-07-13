@@ -1,7 +1,6 @@
 <?php
     $hn = "localhost";
     $un = "root";
-    $pw = "masterkey";
-    $db = "vironchi";
-    $url = "http://localhost:88/vironchi"
+    $pw = "";
+    $db = "1058332_vironchi";
 ?>

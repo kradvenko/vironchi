@@ -759,6 +759,51 @@ input {
     background-color: #9ad8eb;
 }
 
+.divBackgroundGreen {    
+    color: #000000;    
+    font-size: 20px;
+    border-bottom: 3px solid #18b120;
+    margin-bottom: 20px;
+    background-color: #9aeba8;
+}
+
+.divBackgroundBlue4 {    
+    color: #000000;    
+    font-size: 20px;
+    border-bottom: 3px solid #186cb1;
+    margin-bottom: 20px;
+    background-color: #9ac4eb;
+}
+
+.divBackgroundOrange2 {    
+    color: #000000;    
+    font-size: 20px;
+    border-bottom: 3px solid #b16f18;
+    margin-bottom: 20px;
+    background-color: #ebc59a;
+}
+
+.divBackgroundGrey {    
+    color: #000000;    
+    font-size: 18px;
+    padding-bottom: 5px;
+    background-color: #cecece;
+}
+
+.divBackgroundGrey2 {    
+    color: #000000;    
+    font-size: 18px;
+    padding-bottom: 5px;
+    background-color: #f8f8f8;
+}
+
+.divBackgroundGrey3 {    
+    color: #000000;
+    font-size: 18px;
+    margin-bottom: 5px;
+    background-color: #d4d3d3;
+}
+
 .divHeaderLista {    
     color: #000000;
     font-size: 18px;

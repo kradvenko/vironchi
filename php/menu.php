@@ -22,6 +22,7 @@
                         <div class="dropdown-content">
                             <a href="nuevacita.php" id="aNuevaCita">Nueva cita</a>
                             <a href="revisarcitas.php" id="aRevisarCitas">Revisar citas</a>
+                            <a href="agenda.php" id="aAgenda">Agenda</a>
                         </div>
                     </div>
                     <div class="dropdown">
