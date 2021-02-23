@@ -123,6 +123,8 @@
 
             </div>
 
+            <div class="col-6 divAgenda">
+
             <!--MAÑANA-->
             <div class="col-12 divBackgroundOrange2">
                 Mañana
@@ -492,6 +494,8 @@
             </div>
 
             <div class="col-12 divMargin">
+
+            </div>
 
             </div>
 

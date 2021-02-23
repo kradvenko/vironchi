@@ -776,7 +776,7 @@ input {
 }
 
 .divBackgroundOrange2 {    
-    color: #000000;    
+    color: #000000;
     font-size: 20px;
     border-bottom: 3px solid #b16f18;
     margin-bottom: 20px;
@@ -900,4 +900,8 @@ input {
   
   #btnTop:hover {
     background-color: #555; /* Add a dark-grey background on hover */
+  }
+
+  .divAgenda {
+      font-size: 10px;
   }
